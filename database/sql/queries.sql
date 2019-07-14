@@ -1,8 +1,8 @@
 /* All queries needed for the warmUp project */
 
 /* Query 1 */
-SELECT STID, FirstName, LastName
-FROM Student, Course
+SELECT Student.STID, FirstName, LastName
+FROM Student, Course, EnrolledIn
 WHERE CName='Database' AND (Grade='A' OR Grade='A+');
 
 /* Query 2 */
