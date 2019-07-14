@@ -1,13 +1,13 @@
 /* All queries needed for the warmUp project */
 
 /* Query 1 */
-SELECT ID, FirstName, LastName
+SELECT STID, FirstName, LastName
 FROM Student, Course
-WHERE CName='Database' AND (grade='A' OR grade='A+');
+WHERE CName='Database' AND (Grade='A' OR Grade='A+');
 
 /* Query 2 */
 SELECT ID, FirstName, LastName, count(PName)
-FROM belong, Student, Program
+FROM Belong, Student, Program
 GROUP BY Student.ID
 Having count(PName)>1;
 

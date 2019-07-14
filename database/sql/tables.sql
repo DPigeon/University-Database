@@ -1,10 +1,10 @@
-/* - Students: all attributes from table+ID renamed to STID+many to one relation ‘’Belong’’ i.e added primary key Pname from program
+/* - Student: all attributes from table+ID renamed to STID+many to one relation ‘’Belong’’ i.e added primary key Pname from program
    - I removed the M to 1  relation Study to department because a student can study in many departments and this link is encapsulated in the ‘’Belong’’
    - **Edit M to M not M to 1 added Belong table removed advisor from student** 
 */
 
 /* Note from David: shouldn't we define our PRIMARY KEY and FOREIGN KEY ? */
-CREATE TABLE Students
+CREATE TABLE Student
 (
     STID INT,
     Credit INT,
@@ -14,7 +14,7 @@ CREATE TABLE Students
     PName CHAR (30)
 );
 
-INSERT INTO Students
+INSERT INTO Student
 VALUES
     (566090795, 90, 'Linus', 'Torvards', 4.0, 'ComputerScience');
 
