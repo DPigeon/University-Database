@@ -162,5 +162,8 @@ CREATE TABLE PrereqFollow
 - CShas Course has section many to 1 
 */
 
-
-
+CREATE TABLE Supervisor
+(
+    SupervisorName VARCHAR(20),
+    SupervisorID INT
+);
