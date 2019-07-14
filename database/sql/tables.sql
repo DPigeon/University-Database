@@ -62,7 +62,7 @@ CREATE TABLE Fund
 (
     CID INT,
     STID INT
-)
+);
 
 /* Instructor copy pasted attributes ID renamed to IID */
 
