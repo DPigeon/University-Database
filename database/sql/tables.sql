@@ -2,7 +2,7 @@
 
 CREATE TABLE Student
 (
-    STID INT primary key,
+    STID INT,
     Credit INT,
     FirstName CHAR (30),
     LastName CHAR (30),
