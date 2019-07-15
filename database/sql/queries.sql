@@ -6,10 +6,11 @@ FROM Student, Course, EnrolledIn
 WHERE CName='Database' AND (Grade='A' OR Grade='A+');
 
 /* Query 2 */
-SELECT ID, FirstName, LastName, count(PName)
-FROM Belong, Student, Program
-GROUP BY Student.ID
-Having count(PName)>1;
+SELECT Student.STID, FirstName, LastName, count(Program.PName)
+FROM Belong inner join Student inner join Program
+on Student.STID = Belong.STID and Student.PName = Program.PName
+GROUP BY Student.STID
+Having count(Program.PName)>1;
 
 /* Query 3 */
 SELECT Instructor.name, count(*)
