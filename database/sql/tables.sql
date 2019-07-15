@@ -6,7 +6,7 @@
 /* Note from David: shouldn't we define our PRIMARY KEY and FOREIGN KEY ? */
 CREATE TABLE Student
 (
-    STID INT,
+    STID INT primary key,
     Credit INT,
     FirstName CHAR (30),
     LastName CHAR (30),
