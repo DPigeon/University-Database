@@ -1,25 +1,16 @@
 /* Tables */
 
+/* Table Student should be fine */
 CREATE TABLE Student
 (
     STID INT,
+    PName char (30) REFERENCES Program (PName),
+    SeID INT REFERENCES Section (SeID),
     Credit INT,
     FirstName CHAR (30),
     LastName CHAR (30),
     GPA FLOAT,
-    PName CHAR (30),
-    SeID INT,
-    CLID INT,
-    StartTime INT DEFAULT NULL,
-    IID INT,
-    DName INT,
-    PRIMARY KEY (STID),
-    FOREIGN KEY (PName) REFERENCES Program (PName),
-    FOREIGN KEY (SeID) REFERENCES Section (SeID),
-    FOREIGN KEY (CLID) REFERENCES Class (CLID),
-    FOREIGN KEY (StartTime) REFERENCES Timeslot (StartTime),
-    FOREIGN KEY (IID) REFERENCES Instructor (IID),
-    FOREIGN KEY (DName) REFERENCES Department (DName)
+    PRIMARY KEY (STID)
 );
 
 INSERT INTO Student
@@ -31,8 +22,8 @@ CREATE TABLE Belong
     STID INT,
     PName CHAR (30),
     Advisor CHAR (30),
-    PRIMARY KEY (STID),
-    PRIMARY KEY (PName)
+    FOREIGN KEY (STID) REFERENCES Student (STID),
+    FOREIGN KEY (PName) REFERENCES Program (PName)
 );
 
 CREATE TABLE Undergraduate
@@ -72,8 +63,7 @@ CREATE TABLE Fund
 (
     TAID INT,
     RID INT,
-    FOREIGN KEY (TAID) REFERENCES Graduate (STID),
-    FOREIGN KEY (RID) REFERENCES Graduate (STID)
+    FOREIGN KEY (STID) REFERENCES Graduate (STID)
 )
 
 CREATE TABLE Work
@@ -94,15 +84,9 @@ CREATE TABLE Teach
 CREATE TABLE Section
 (
     SeID INT,
-    CLID INT,
-    STID INT,
-    PName CHAR (30),
     Semester CHAR (30),
     Year INT,
     PRIMARY KEY (SeID),
-    FOREIGN KEY (PName) REFERENCES Program (PName),
-    FOREIGN KEY (CLID) REFERENCES Class (CLID),
-    FOREIGN KEY (STID) REFERENCES Student (STID)
 );
 
 CREATE TABLE EnrolledIn
@@ -167,15 +151,5 @@ CREATE TABLE Course
     PRIMARY KEY (CID),
     FOREIGN KEY (DName) REFERENCES Department (DName)
 );
-CREATE TABLE PrereqFollow
-(
-    CID INT,
-    FOREIGN KEY (CID) REFERENCES Course (CID)
-);
 
 
-CREATE TABLE Supervisor
-(
-    SupervisorName VARCHAR(20),
-    SupervisorID INT
-);
