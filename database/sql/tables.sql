@@ -2,7 +2,7 @@
 
 CREATE TABLE Student
 (
-    STID INT,
+    STID INT primary key,
     Credit INT,
     FirstName CHAR (30),
     LastName CHAR (30),
@@ -22,7 +22,7 @@ CREATE TABLE Student
     FOREIGN KEY (DName) REFERENCES Department (DName)
 );
 
-INSERT INTO Students
+INSERT INTO Student
 VALUES
     (566090795, 90, 'Linus', 'Torvards', 4.0, 'ComputerScience');
 
@@ -174,5 +174,8 @@ CREATE TABLE PrereqFollow
 );
 
 
-
-
+CREATE TABLE Supervisor
+(
+    SupervisorName VARCHAR(20),
+    SupervisorID INT
+);
