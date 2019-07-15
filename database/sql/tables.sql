@@ -10,13 +10,11 @@ CREATE TABLE Student
     FirstName CHAR (30),
     LastName CHAR (30),
     GPA FLOAT,
-    PName CHAR (30),
-    SeID INT,
     CLID INT,
     StartTime INT DEFAULT NULL,
     IID INT,
     DName INT,
-    PRIMARY KEY (STID)
+    PRIMARY KEY(STID)
 );
 
 CREATE TABLE Belong
