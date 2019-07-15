@@ -72,7 +72,7 @@ CREATE TABLE Instructor
 (
     IID INT,
     Name CHAR(30),
-    PRIMARY KEY (TAID));
+    PRIMARY KEY (IID));
     
 CREATE TABLE Work
 (
