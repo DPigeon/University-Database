@@ -92,7 +92,8 @@ CREATE TABLE EnrolledIn
 CREATE TABLE Class
 (
     CLID INT,
-    StartTime INT,
+    //changing Start Time to time
+    StartTime TIME,
     ClassNum INT,
     Building CHAR (30),
     Capacity INT,
