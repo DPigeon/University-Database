@@ -78,11 +78,7 @@ CREATE TABLE Section
     SeID INT,
     Semester CHAR (30),
     Year INT,
-<<<<<<< Updated upstream
-    PRIMARY KEY (SeID),
-=======
     PRIMARY KEY (SeID)
->>>>>>> Stashed changes
 );
 
 CREATE TABLE EnrolledIn
