@@ -7,8 +7,8 @@ WHERE CName='Database' AND (Grade='A' OR Grade='A+');
 
 /* Query 2 */
 SELECT Student.STID, FirstName, LastName, count(Program.PName)
-FROM Belong inner join Student inner join Program
-on Student.STID = Belong.STID and Student.PName = Program.PName
+FROM Student inner join Program
+on Student.PName = Program.PName
 GROUP BY Student.STID
 Having count(Program.PName)>1;
 
