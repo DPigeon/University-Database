@@ -63,9 +63,17 @@ CREATE TABLE Fund
 (
     TAID INT,
     RID INT,
+    //edit adding STID INT
+    STID INT,
     FOREIGN KEY (STID) REFERENCES Graduate (STID)
 )
-
+//adding instructor
+CREATE TABLE Instructor 
+(
+    IID INT,
+    Name CHAR(30),
+    PRIMARY KEY (TAID));
+    
 CREATE TABLE Work
 (
     DName INT,
