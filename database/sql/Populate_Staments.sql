@@ -97,67 +97,47 @@ INSERT INTO Course VALUES( 8,'Flammable Materials' ,'Engineering');
 INSERT INTO Course VALUES( 9,'Evolution' ,'Anthropology');
 INSERT INTO Course VALUES( 10,'Talmudic Studies' ,'Jewish Studies');
                          
-INSERT INTO Program
-VALUES
-    ('Computer Science', 72);
-INSERT INTO Program
-VALUES
-	('English', 72);
-INSERT INTO Program
-VALUES
-    ('Computer Architecture', 72);
-INSERT INTO Program
-VALUES
-    ('Computer Hardware', 72);
-INSERT INTO Program
-VALUES
-    ('Computer Games', 72);
-INSERT INTO Program
-VALUES
-    ('Arts', 72);
-INSERT INTO Program
-VALUES
-    ('Business', 72);
-INSERT INTO Program
-VALUES
-    ('Economics', 72);
-INSERT INTO Program
-VALUES
-    ('Law', 72);
-INSERT INTO Program
-VALUES
-    ('Mathematics', 72);
+INSERT INTO Program VALUES ('Computer Science', 72);
+INSERT INTO Program VALUES ('English', 72);
+INSERT INTO Program VALUES ('Computer Architecture', 72);
+INSERT INTO Program VALUES ('Computer Hardware', 72);
+INSERT INTO Program VALUES ('Computer Games', 72);
+INSERT INTO Program VALUES ('Arts', 72);
+INSERT INTO Program VALUES ('Business', 72);
+INSERT INTO Program VALUES ('Economics', 72);
+INSERT INTO Program VALUES ('Law', 72);
+INSERT INTO Program VALUES ('Mathematics', 72);
 
 INSERT INTO Student
 VALUES
-    (566090795, 90, 'Linus', 'Torvards', 4.0, 'Computer Science');
+    (1, 90, 'Linus', 'Torvards', 4.0, 'Computer Science');
 INSERT INTO Student
 VALUES
-    (26457899, 90, 'Max', 'Phillips', 3.0, 'Mathematics');
+    (2, 90, 'Max', 'Phillips', 3.0, 'Mathematics');
 INSERT INTO Student
 VALUES
-    (12345697, 90, 'Glen', 'Mackenzie', 3.2, 'Economics');
+    (3, 90, 'Glen', 'Mackenzie', 3.2, 'Economics');
 INSERT INTO Student
 VALUES
-    (76859321, 90, 'Andrew', 'Morrison', 2.0, 'Business');
+    (4, 90, 'Andrew', 'Morrison', 2.0, 'Business');
 INSERT INTO Student
 VALUES
-    (28764980, 90, 'Phil', 'Newton', 2.1, 'Computer Games');
+    (5, 90, 'Phil', 'Newton', 2.1, 'Computer Games');
 INSERT INTO Student
 VALUES
-    (76890473, 90, 'John', 'Smith', 3.1, 'Computer Architecture');
+    (6, 90, 'John', 'Smith', 3.1, 'Computer Architecture');
 INSERT INTO Student
 VALUES
-    (95837468, 90, 'John', 'Howard', 3.4, 'Law');
+    (7, 90, 'John', 'Howard', 3.4, 'Law');
 INSERT INTO Student
 VALUES
-    (059682736, 90, 'Marcus', 'Morris', 2.7, 'Computer Science');
+    (8, 90, 'Marcus', 'Morris', 2.7, 'Computer Science');
 INSERT INTO Student
 VALUES
-    (658936478, 90, 'James', 'Watson', 2.0, 'Mathematics');
+    (9, 90, 'James', 'Watson', 2.0, 'Mathematics');
 INSERT INTO Student
 VALUES
-    (079683746, 90, 'Felix', 'Harris', 3.1, 'Computer Hardware');
+    (10, 90, 'Felix', 'Harris', 3.1, 'Computer Hardware');
 
 INSERT INTO Belong
 VALUES
@@ -192,65 +172,65 @@ VALUES
 
 INSERT INTO Undergraduate
 VALUES
-	(2, 2);
+	(1);
 INSERT INTO Undergraduate
 VALUES
-	(2, 2);
+	(2);
 INSERT INTO Undergraduate
 VALUES
-	(2, 2);
+	(3);
 INSERT INTO Undergraduate
 VALUES
-	(2, 2);
+	(4);
 INSERT INTO Undergraduate
 VALUES
-	(2, 2);
+	(5);
 INSERT INTO Undergraduate
 VALUES
-	(2, 2);
+	(6);
 INSERT INTO Undergraduate
 VALUES
-	(2, 2);
+	(7);
 INSERT INTO Undergraduate
 VALUES
-	(2, 2);
+	(8);
 INSERT INTO Undergraduate
 VALUES
-	(2, 2);
+	(9);
 INSERT INTO Undergraduate
 VALUES
-	(2, 2);
+	(10);
 
 INSERT INTO Graduate
 VALUES
-	(2, 3, 1);
+	(1, 3);
 INSERT INTO Graduate
 VALUES
-	(2, 3, 1);
+	(2, 2);
 INSERT INTO Graduate
 VALUES
-	(2, 3, 1);
+	(3, 1);
 INSERT INTO Graduate
 VALUES
-	(2, 3, 1);
+	(4, 3);
 INSERT INTO Graduate
 VALUES
-	(2, 3, 1);
+	(5, 2);
 INSERT INTO Graduate
 VALUES
-	(2, 3, 1);
+	(6, 1);
 INSERT INTO Graduate
 VALUES
-	(2, 3, 1);
+	(7, 4);
 INSERT INTO Graduate
 VALUES
-	(2, 3, 1);
+	(8, 4);
+INSERT INTO Graduate
+VALUE
+	(9, 3);
 INSERT INTO Graduate
 VALUES
-	(2, 3, 1);
-INSERT INTO Graduate
-VALUES
-	(2, 3, 1);
+	(10, 1);
 
 INSERT INTO ResearchFunding
 VALUES
@@ -313,4 +293,3 @@ VALUES
 INSERT INTO Fund
 VALUES
 	(10, 2, 3);
-
