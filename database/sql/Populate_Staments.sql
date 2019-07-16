@@ -96,3 +96,221 @@ INSERT INTO Course VALUES( 7,'The Roman Empire' ,'History');
 INSERT INTO Course VALUES( 8,'Flammable Materials' ,'Engineering');
 INSERT INTO Course VALUES( 9,'Evolution' ,'Anthropology');
 INSERT INTO Course VALUES( 10,'Talmudic Studies' ,'Jewish Studies');
+                         
+INSERT INTO Program
+VALUES
+    ('Computer Science', 72);
+INSERT INTO Program
+VALUES
+	('English', 72);
+INSERT INTO Program
+VALUES
+    ('Computer Architecture', 72);
+INSERT INTO Program
+VALUES
+    ('Computer Hardware', 72);
+INSERT INTO Program
+VALUES
+    ('Computer Games', 72);
+INSERT INTO Program
+VALUES
+    ('Arts', 72);
+INSERT INTO Program
+VALUES
+    ('Business', 72);
+INSERT INTO Program
+VALUES
+    ('Economics', 72);
+INSERT INTO Program
+VALUES
+    ('Law', 72);
+INSERT INTO Program
+VALUES
+    ('Mathematics', 72);
+
+INSERT INTO Student
+VALUES
+    (566090795, 90, 'Linus', 'Torvards', 4.0, 'Computer Science');
+INSERT INTO Student
+VALUES
+    (26457899, 90, 'Max', 'Phillips', 3.0, 'Mathematics');
+INSERT INTO Student
+VALUES
+    (12345697, 90, 'Glen', 'Mackenzie', 3.2, 'Economics');
+INSERT INTO Student
+VALUES
+    (76859321, 90, 'Andrew', 'Morrison', 2.0, 'Business');
+INSERT INTO Student
+VALUES
+    (28764980, 90, 'Phil', 'Newton', 2.1, 'Computer Games');
+INSERT INTO Student
+VALUES
+    (76890473, 90, 'John', 'Smith', 3.1, 'Computer Architecture');
+INSERT INTO Student
+VALUES
+    (95837468, 90, 'John', 'Howard', 3.4, 'Law');
+INSERT INTO Student
+VALUES
+    (059682736, 90, 'Marcus', 'Morris', 2.7, 'Computer Science');
+INSERT INTO Student
+VALUES
+    (658936478, 90, 'James', 'Watson', 2.0, 'Mathematics');
+INSERT INTO Student
+VALUES
+    (079683746, 90, 'Felix', 'Harris', 3.1, 'Computer Hardware');
+
+INSERT INTO Belong
+VALUES
+	(1, 'Marcus', 'Rashford', 1, 'Computer Science');
+INSERT INTO Belong
+VALUES
+	(2, 'Jesse', 'Lingard', 1, 'Computer Science');
+INSERT INTO Belong
+VALUES
+	(3, 'Anthony', 'Martial', 1, 'Computer Science');
+INSERT INTO Belong
+VALUES
+	(4, 'Luke', 'Shaw', 1, 'Computer Science');
+INSERT INTO Belong
+VALUES
+	(5, 'Paul', 'Scholes', 1, 'Computer Science');
+INSERT INTO Belong
+VALUES
+	(6, 'David', 'Beckham', 1, 'Computer Science');
+INSERT INTO Belong
+VALUES
+	(7, 'Mason', 'Greenwood', 1, 'Computer Science');
+INSERT INTO Belong
+VALUES
+	(8, 'Phil', 'Jones', 1, 'Computer Science');
+INSERT INTO Belong
+VALUES
+	(9, 'James', 'Garner', 1, 'Computer Science');
+INSERT INTO Belong
+VALUES
+	(10, 'Gary', 'Neville', 1, 'Computer Science');
+
+INSERT INTO Undergraduate
+VALUES
+	(2, 2);
+INSERT INTO Undergraduate
+VALUES
+	(2, 2);
+INSERT INTO Undergraduate
+VALUES
+	(2, 2);
+INSERT INTO Undergraduate
+VALUES
+	(2, 2);
+INSERT INTO Undergraduate
+VALUES
+	(2, 2);
+INSERT INTO Undergraduate
+VALUES
+	(2, 2);
+INSERT INTO Undergraduate
+VALUES
+	(2, 2);
+INSERT INTO Undergraduate
+VALUES
+	(2, 2);
+INSERT INTO Undergraduate
+VALUES
+	(2, 2);
+INSERT INTO Undergraduate
+VALUES
+	(2, 2);
+
+INSERT INTO Graduate
+VALUES
+	(2, 3, 1);
+INSERT INTO Graduate
+VALUES
+	(2, 3, 1);
+INSERT INTO Graduate
+VALUES
+	(2, 3, 1);
+INSERT INTO Graduate
+VALUES
+	(2, 3, 1);
+INSERT INTO Graduate
+VALUES
+	(2, 3, 1);
+INSERT INTO Graduate
+VALUES
+	(2, 3, 1);
+INSERT INTO Graduate
+VALUES
+	(2, 3, 1);
+INSERT INTO Graduate
+VALUES
+	(2, 3, 1);
+INSERT INTO Graduate
+VALUES
+	(2, 3, 1);
+INSERT INTO Graduate
+VALUES
+	(2, 3, 1);
+
+INSERT INTO ResearchFunding
+VALUES
+	(1, 1, 1000);
+INSERT INTO ResearchFunding
+VALUES
+	(2, 1, 10000);
+INSERT INTO ResearchFunding
+VALUES
+	(3, 1, 4000);
+INSERT INTO ResearchFunding
+VALUES
+	(4, 1, 5000);
+INSERT INTO ResearchFunding
+VALUES
+	(5, 1, 2000);
+INSERT INTO ResearchFunding
+VALUES
+	(6, 1, 500);
+INSERT INTO ResearchFunding
+VALUES
+	(7, 1, 200);
+INSERT INTO ResearchFunding
+VALUES
+	(8, 1, 300);
+INSERT INTO ResearchFunding
+VALUES
+	(9, 1, 450);
+INSERT INTO ResearchFunding
+VALUES
+	(10, 1, 900);
+
+INSERT INTO Fund
+VALUES
+	(1, 2, 3);
+INSERT INTO Fund
+VALUES
+	(2, 2, 3);
+INSERT INTO Fund
+VALUES
+	(3, 2, 3);
+INSERT INTO Fund
+VALUES
+	(4, 2, 3);
+INSERT INTO Fund
+VALUES
+	(5, 2, 3);
+INSERT INTO Fund
+VALUES
+	(6, 2, 3);
+INSERT INTO Fund
+VALUES
+	(7, 2, 3);
+INSERT INTO Fund
+VALUES
+	(8, 2, 3);
+INSERT INTO Fund
+VALUES
+	(9, 2, 3);
+INSERT INTO Fund
+VALUES
+	(10, 2, 3);
+
