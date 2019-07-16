@@ -1,7 +1,7 @@
 /* Tables */
 
 /* Table Student should be fine */
-CREATE TABLE Student
+CREATE TABLE Student /* */
 (
     STID INT PRIMARY KEY,
     PName char (30) REFERENCES Program (PName),
@@ -30,25 +30,22 @@ CREATE TABLE Belong
     FOREIGN KEY (PName) REFERENCES Program (PName)
 );
 
-CREATE TABLE Undergraduate
+CREATE TABLE Undergraduate /* */
 (
-    STID INT,
+    STID INT PRIMARY KEY,
     FOREIGN KEY (STID) REFERENCES Student (STID)
 );
 
-CREATE TABLE Graduate
+CREATE TABLE Graduate /* */
 (
-    STID INT,
+    STID INT PRIMARY KEY,
     SupervisorID INT,
-    FOREIGN KEY (STID) REFERENCES Student (STID)
-);
-
-CREATE TABLE Fund
-(
     TAID INT,
     RID INT,
-    FOREIGN KEY (STID) REFERENCES Graduate (STID)
-)
+    FOREIGN KEY (STID) REFERENCES Student (STID),
+    FOREIGN KEY (TAID) REFERENCES TeachingAssistant (TAID),
+    FOREIGN KEY (RID) REFERENCES ResearchFunding (RID)
+);
 
 CREATE TABLE ReseachFunding
 (
