@@ -1,13 +1,13 @@
-INSERT INTO Instructor VALUES( 1, 'Nicholas Larsen');
-INSERT INTO Instructor VALUES( 2, 'Ernest Steig');
-INSERT INTO Instructor VALUES( 3, 'Melissa Roberts');
-INSERT INTO Instructor VALUES( 4, 'Lisa Cranterson');
-INSERT INTO Instructor VALUES( 5, 'Jake Ralph');
-INSERT INTO Instructor VALUES( 6, 'Linda Torrents');
-INSERT INTO Instructor VALUES( 7, 'Claire Devons');
-INSERT INTO Instructor VALUES( 8, 'Isaac Harrison');
-INSERT INTO Instructor VALUES( 9, 'Jeremy Kudo');
-INSERT INTO Instructor VALUES( 10, 'Jessica Stevenson');
+INSERT INTO Instructor VALUES( 1, 'Computer Science', 'Nicholas Larsen');
+INSERT INTO Instructor VALUES( 2, 'Mathematics', 'Ernest Steig');
+INSERT INTO Instructor VALUES( 3, 'Biology', 'Melissa Roberts');
+INSERT INTO Instructor VALUES( 4, 'Physics', 'Lisa Cranterson');
+INSERT INTO Instructor VALUES( 5, 'Engineering', 'Jake Ralph');
+INSERT INTO Instructor VALUES( 6, 'French' 'Linda Torrents');
+INSERT INTO Instructor VALUES( 7, 'Gender Studies', 'Claire Devons');
+INSERT INTO Instructor VALUES( 8, 'History', 'Isaac Harrison');
+INSERT INTO Instructor VALUES( 9, 'Anthropology', 'Jeremy Kudo');
+INSERT INTO Instructor VALUES( 10, 'Jewish Studies', 'Jessica Stevenson');
 
 INSERT INTO Work VALUES( 'Physics', 1);
 INSERT INTO Work VALUES( 'Mathematics', 2);
@@ -72,7 +72,7 @@ INSERT INTO Class VALUES(12:45:00, 'Friday',5,13:45:00);
 INSERT INTO Class VALUES(10:30:00, 'Monday',6,12:45:00);
 INSERT INTO Class VALUES(11:00:00, 'Monday',7,12:45:00);
 INSERT INTO Class VALUES(10:45:00, 'Wednesday',8,11:45:00);
-INSERT INTO Class VALUES(11:15:00, 'Thursday,9,13:45:00);
+INSERT INTO Class VALUES(11:15:00, 'Thursday',9,13:45:00);
 INSERT INTO Class VALUES(12:30:00, 'Friday',10,14:45:00);
 
 INSERT INTO Department VALUES('Computer Science', 1, 'A Building');
