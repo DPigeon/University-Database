@@ -47,9 +47,10 @@ CREATE TABLE Graduate /* */
     FOREIGN KEY (RID) REFERENCES ResearchFunding (RID)
 );
 
-CREATE TABLE ReseachFunding
+CREATE TABLE ResearchFunding
 (
     RID INT PRIMARY KEY,
+    STID INT,
     Amount INT,
     FOREIGN KEY (STID) REFERENCES Graduate (STID)
 );
@@ -57,6 +58,7 @@ CREATE TABLE ReseachFunding
 CREATE TABLE TeachingAssistant
 (
     TAID INT PRIMARY KEY,
+    STID INT,
     TotalHours INT,
     AssignmentMarking CHAR(1),
     LabInstructor CHAR(1),
@@ -94,8 +96,8 @@ CREATE TABLE Teach
 CREATE TABLE Class
 (
     CLID INT PRIMARY KEY,
-    StartTime INT REFERENCES Timeslot (StartTime),
-    DayWeek INT REFERENCES Timeslot (DayWeek),
+    StartTime TIME REFERENCES Timeslot (StartTime),
+    DayWeek CHAR(30) REFERENCES Timeslot (DayWeek),
     ClassNum INT,
     Building CHAR (30),
     Capacity INT
