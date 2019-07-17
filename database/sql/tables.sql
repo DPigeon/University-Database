@@ -1,11 +1,14 @@
 /* Tables */
 
-/* Table Student should be fine */
-CREATE TABLE Student /* */
+CREATE TABLE Instructor
+(
+    IID INT PRIMARY KEY,
+    Name CHAR(30)
+);
+
+CREATE TABLE Student
 (
     STID INT PRIMARY KEY,
-    PName char (30) REFERENCES Program (PName),
-    SeID INT REFERENCES Section (SeID),
     Credit INT,
     FirstName CHAR (30),
     LastName CHAR (30),
@@ -30,13 +33,13 @@ CREATE TABLE Belong
     FOREIGN KEY (PName) REFERENCES Program (PName)
 );
 
-CREATE TABLE Undergraduate /* */
+CREATE TABLE Undergraduate
 (
     STID INT PRIMARY KEY,
     FOREIGN KEY (STID) REFERENCES Student (STID)
 );
 
-CREATE TABLE Graduate /* */
+CREATE TABLE Graduate
 (
     STID INT PRIMARY KEY,
     SupervisorID INT,
@@ -50,30 +53,22 @@ CREATE TABLE Graduate /* */
 CREATE TABLE ResearchFunding
 (
     RID INT PRIMARY KEY,
-    STID INT,
-    Amount INT,
-    FOREIGN KEY (STID) REFERENCES Graduate (STID)
+    Amount INT
 );
 
 CREATE TABLE TeachingAssistant
 (
     TAID INT PRIMARY KEY,
-    STID INT,
     TotalHours INT,
     AssignmentMarking CHAR(1),
     LabInstructor CHAR(1),
     NumCourses INT,
-    TutorialSession CHAR(1),
-    FOREIGN KEY (STID) REFERENCES Graduate (STID)
+    TutorialSession CHAR(1)
 );
 
 CREATE TABLE Section
 (
     SeID INT PRIMARY KEY,
-    IID INT REFERENCES Instructor (IID),
-    STID INT REFERENCES Student (STID),
-    CLID INT REFERENCES Class (CLID),
-    CID INT REFERENCES Course (CID),
     Semester CHAR (30),
     Year INT,
 );
@@ -96,8 +91,6 @@ CREATE TABLE Teach
 CREATE TABLE Class
 (
     CLID INT PRIMARY KEY,
-    StartTime TIME REFERENCES Timeslot (StartTime),
-    DayWeek CHAR(30) REFERENCES Timeslot (DayWeek),
     ClassNum INT,
     Building CHAR (30),
     Capacity INT
@@ -105,25 +98,25 @@ CREATE TABLE Class
 
 CREATE TABLE Timeslot
 (
-    StartTime TIME PRIMARY KEY,
-    DayWeek CHAR (30) PRIMARY KEY,
-    CLID INT REFERENCES Class (CLID),
+    StartTime TIME,
+    DayWeek CHAR (30),
     CLID INT,
-    Endtime TIME
+    SeID INT,
+    EndTime TIME,
+    PRIMARY KEY (StartTime, DayWeek),
+    FOREIGN KEY (CLID) REFERENCES Class (CLID),
+    FOREIGN KEY (SeID) REFERENCES Section (SeID)
 );
 
 CREATE TABLE Department
 (
     DName CHAR (30) PRIMARY KEY,
-    IID INT REFERENCES Instructor (IID),
     Building CHAR (30)
 );
 
 CREATE TABLE Program
 (
     PName CHAR (30) PRIMARY KEY,
-    DName CHAR (30) REFERENCES Department (DName),
-    STID INT REFERENCES Student (STID),
     TotalCredits INT
 );
 
@@ -131,7 +124,6 @@ CREATE TABLE Course
 (
     CID INT PRIMARY KEY,
     CName CHAR (30) REFERENCES Class (CName),
-    DName CHAR (30) REFERENCES Department (DName)
 );
 
 CREATE TABLE Has
@@ -142,10 +134,26 @@ CREATE TABLE Has
     FOREIGN KEY (SeID) REFERENCES Section (SeID)
 );
 
-CREATE TABLE Contain
+CREATE TABLE Within
+(
+    CID INT,
+    DName CHAR(30) REFERENCES Department (DName),
+    FOREIGN KEY (CID) REFERENCES Course (CID)
+);
+
+CREATE TABLE Fund
+(
+    STID INT,
+    TAID INT,
+    RID INT,
+    FOREIGN KEY (STID) REFERENCES Graduate (STID)
+);
+
+CREATE TABLE AssignTo
 (
     SeID INT,
-    CLID INT,
-    FOREIGN KEY (SeID) REFERENCES Section (SeID)
+    TAID INT,
+    FOREIGN KEY (SeID) REFERENCES Section (SeID),
+    FOREIGN KEY (TAID) REFERENCES TeachingAssistant (TAID)
 );
 
