@@ -36,10 +36,15 @@ WHERE Under.DName='Computer Science';
 
 
 /* Query 5 */
+/*
 SELECT U.UName, U.UID
 FROM Undergraduate as U
 WHERE advisor=NULL;
-
+*/
+//cCHANGED 5
+SELECT S.STID, S.firstName
+FROM Undergraduate U, Students S, Belong B
+WHERE B.Advisor=NULL AND S.STID=U.STID AND B.STID=S.STID;
 /* Query 6 */
 SELECT STID, FirstName, LastName, AssignmentMarking
 FROM TeachingAssistant INNER JOIN Section ON TeachingAssistant.STID = Section.STID,
@@ -70,6 +75,10 @@ GROUP BY DName;
 
 /* Query 10 */
 SELECT PName, COUNT(STID)
+FROM  Belong ;
+GROUP BY PName;
+/*
+SELECT PName, COUNT(STID)
 FROM Program INNER JOIN Student ON Student.STID = Program.STID
 GROUP BY PName;
-
+*/
