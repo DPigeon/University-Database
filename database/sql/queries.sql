@@ -26,21 +26,21 @@ HAVING COUNT(Program.PName)>1;
  Find the name of all the instructors who taught Comp 352 in the fall term
 of 2018 but have never taught the same course before
  */
-SELECT I.name
-from Instructor I INNER JOIN Section S ON S.IID = I.IID INNER JOIN Course C ON C.CID = S.CID
-WHERE C.CName='COMP352' AND S.Semester='Fall' AND S.Year=2018
-GROUP BY I.IID, S.Year
-HAVING S.Year < 2018 AND COUNT(S.Year)=1;
 
-/*work in progress:
-SELECT I.Name
-FROM Instructor I INNER JOIN Section S ON S.IID = I.IID INNER JOIN Course C ON C.CID = S.CID
-WHERE I.Name IN (
-    SELECT II.Name
-    FROM Instructor II INNER JOIN Section SS ON SS.IID = II.IID INNER JOIN Course CC ON CC.CID = SS.CID
-    WHERE CC.CName='COMP352' AND SS.Semester='Fall' AND SS.Year=2018
-    ) AND ;
-  */
+SELECT I.Name, C.CName, S.Year, S.Semester, I.IID, S.SeID, C.CID
+FROM Instructor I INNER JOIN Teach T ON T.IID = I.IID
+    INNER JOIN Section S on T.SeID = S.SeID
+    INNER JOIN Has H on S.SeID = H.SeID
+    INNER JOIN Course C on H.CID = C.CID
+WHERE C.CName = 'COMP352' AND
+      S.Year = 2018 AND
+      S.Semester = 'Fall' AND
+      I.IID NOT IN (SELECT II.IID
+                    FROM Instructor II INNER JOIN Teach TT ON TT.IID = II.IID
+                                    INNER JOIN Section SS on TT.SeID = SS.SeID
+                                    INNER JOIN Has HH on SS.SeID = HH.SeID
+                                    INNER JOIN Course CC on HH.CID = CC.CID
+                    WHERE CC.CName = 'COMP352' AND SS.Year < 2018);
 
 /* Query 4  WORKS */
 /*
@@ -83,17 +83,22 @@ FROM Section INNER JOIN Has
         on EI.STID = S.STID
 WHERE CName='COMP353' AND Semester='Summer' AND Year=2019;
 
+/* OR */
+SELECT I.Name
+FROM Supervises S INNER JOIN Supervisor SS ON S.SupID = SS.SupID
+                    INNER JOIN Instructor I ON SS.IID = I.IID
+GROUP BY I.IID
+HAVING COUNT(I.IID) > 20;
+
 /* Query 7 TODO */
 /*
  Find the name of all the supervisors in the Computer Science department
 who have supervised at least 20 students.
  */
-SELECT Graduate.SupervisorID
-FROM Graduate INNER JOIN Instructors ON Graduate.SupervisorID = Instructor.IID,
-	Instructor INNER JOIN Department ON Instructor.DName = Department.DName
+SELECT Instructor.Name
+FROM Instructor INNER JOIN Supervisor S on Instructor.IID = S.IID INNER JOIN Supervises S2 on S.SupID = S2.SupID INNER JOIN Graduate G on S2.STID = G.STID
 GROUP BY Instructor.Name
-HAVING Department.DName = 'ComputerScience' AND COUNT(*) >= 3;
-
+HAVING COUNT(*) >= 4;
 
 /* Query 8 WORKS*/
 /*
@@ -145,5 +150,3 @@ program.
 SELECT Program.PName, COUNT(S.STID)
 FROM  Program INNER JOIN Belong B on Program.PName = B.PName INNER JOIN Student S on B.STID = S.STID
 GROUP BY Program.PName;
-
-
