@@ -42,7 +42,6 @@ CREATE TABLE Undergraduate
 CREATE TABLE Graduate
 (
     STID INT PRIMARY KEY,
-    SupervisorID INT,
     TAID INT,
     RID INT,
     FOREIGN KEY (STID) REFERENCES Student (STID),
@@ -156,4 +155,21 @@ CREATE TABLE AssignTo
     FOREIGN KEY (SeID) REFERENCES Section (SeID),
     FOREIGN KEY (TAID) REFERENCES TeachingAssistant (TAID)
 );
+
+CREATE TABLE Supervisor
+(
+    SupID INT PRIMARY KEY,
+    IID INT,
+    FOREIGN KEY (IID) REFERENCES Instructor (IID)
+);
+
+CREATE TABLE Supervises
+(
+    SupID INT,
+    STID INT,
+    FOREIGN KEY (SupID) REFERENCES Supervisor (SupID),
+    FOREIGN KEY (STID) REFERENCES Graduate (STID)
+);
+
+
 
