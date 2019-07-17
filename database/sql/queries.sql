@@ -35,10 +35,15 @@ FROM Program P, department
 WHERE DName='ComputerScience';
 
 /* Query 5 */
+/*
 SELECT U.UName, U.UID
 FROM Undergraduate as U
 WHERE advisor=NULL;
-
+*/
+//cCHANGED 5
+SELECT S.STID, S.firstName
+FROM Undergraduate U, Students S, Belong B
+WHERE B.Advisor=NULL AND S.STID=U.STID AND B.STID=S.STID;
 /* Query 6 */
 SELECT STID, FirstName, LastName, AssignmentMarking
 FROM TeachingAssistant INNER JOIN Section ON TeachingAssistant.STID = Section.STID,
