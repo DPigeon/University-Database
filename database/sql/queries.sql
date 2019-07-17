@@ -1,23 +1,33 @@
 /* All queries needed for the warmUp project */
 
-/* Query 1 */
-SELECT Student.STID, FirstName, LastName
-FROM Student INNER JOIN Course ON Course.CID = Student.CID,
-	Student INNER JOIN EnrolledIn ON Student.STID = EnrolledIn.STID
-WHERE CName='COMP352' AND (Grade='A' OR Grade='A+');
+/* Query 1 - WORKS */
+SELECT S.STID, S.FirstName, S.LastName
+FROM Student S INNER JOIN EnrolledIn E ON S.STID = E.STID
+INNER JOIN Section Se ON E.SeID = Se.SeID INNER JOIN Course C ON Se.CID = C.CID
+WHERE C.CName='COMP352' AND (E.Grade='A' OR E.Grade='A+');
 
-/* Query 2 */
+/* Query 2 - WORKS */
 SELECT Student.STID, FirstName, LastName, COUNT(Program.PName)
-FROM Student INNER JOIN Program ON Student.PName = Program.PName
+FROM Student INNER JOIN Belong B on Student.STID = B.STID inner join Program ON Student.PName = Program.PName
 GROUP BY Student.STID
 HAVING COUNT(Program.PName)>1;
 
 /* Query 3 */
-SELECT Instructor.name, count(Instructor.Name)
-FROM Section INNER JOIN Course ON Section.CID = Course.CID,
-	Section INNER JOIN Instructor ON Instructor.IID = Section.IID
-GROUP BY Instructor.name
-Having CName='COMP352' AND Semester='Fall' AND Year=2018 AND count(Instructor.Name)=1;
+SELECT I.name
+from Instructor I INNER JOIN Section S ON S.IID = I.IID INNER JOIN Course C ON C.CID = S.CID
+WHERE C.CName='COMP352' AND S.Semester='Fall' AND S.Year=2018
+GROUP BY I.IID, S.Year
+HAVING S.Year < 2018 AND COUNT(S.Year)=1;
+
+/*work in progress:
+SELECT I.Name
+FROM Instructor I INNER JOIN Section S ON S.IID = I.IID INNER JOIN Course C ON C.CID = S.CID
+WHERE I.Name IN (
+    SELECT II.Name
+    FROM Instructor II INNER JOIN Section SS ON SS.IID = II.IID INNER JOIN Course CC ON CC.CID = SS.CID
+    WHERE CC.CName='COMP352' AND SS.Semester='Fall' AND SS.Year=2018
+    ) AND ;
+  */
 
 /* Query 4 */
 SELECT DISTINCT P.PName, P.TotalCredit
