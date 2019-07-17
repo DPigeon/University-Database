@@ -31,7 +31,7 @@ INSERT INTO Teach VALUES( 8, 3);
 INSERT INTO Teach VALUES( 9, 2);
 INSERT INTO Teach VALUES( 10, 1);
 
-INSERT INTO Section VALUES( 1, 10, 10, 4, 4, 'Fall',2019);
+INSERT INTO Section VALUES( 1, 10, 10, 4, 1, 'Fall',2018);
 INSERT INTO Section VALUES( 2, 9, 9, 5, 5, 'Winter',2020);
 INSERT INTO Section VALUES( 3, 8, 8, 6, 6, 'Summer',2019);
 INSERT INTO Section VALUES( 4, 7, 7, 7, 7, 'Fall',2019);
