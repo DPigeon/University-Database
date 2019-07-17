@@ -8,7 +8,7 @@ WHERE C.CName='COMP352' AND (E.Grade='A' OR E.Grade='A+');
 
 /* Query 2 - WORKS */
 SELECT Student.STID, FirstName, LastName, COUNT(Program.PName)
-FROM Student INNER JOIN Belong B on Student.STID = B.STID inner join Program ON Student.PName = Program.PName
+FROM Student INNER JOIN Belong B on Student.STID = B.STID inner join Program ON B.PName = Program.PName
 GROUP BY Student.STID
 HAVING COUNT(Program.PName)>1;
 
@@ -30,9 +30,10 @@ WHERE I.Name IN (
   */
 
 /* Query 4 */
-SELECT DISTINCT P.PName, P.TotalCredit
-FROM Program P, department
-WHERE DName='ComputerScience';
+SELECT DISTINCT P.Pname, P.TotalCredits
+FROM Under inner join Program P on Under.PName = P.PName
+WHERE Under.DName='Computer Science';
+
 
 /* Query 5 */
 SELECT U.UName, U.UID
