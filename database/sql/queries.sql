@@ -74,6 +74,10 @@ GROUP BY DName;
 
 /* Query 10 */
 SELECT PName, COUNT(STID)
+FROM  Belong ;
+GROUP BY PName;
+/*
+SELECT PName, COUNT(STID)
 FROM Program INNER JOIN Student ON Student.STID = Program.STID
 GROUP BY PName;
-
+*/
