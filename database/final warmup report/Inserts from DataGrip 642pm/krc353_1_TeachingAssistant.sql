@@ -1,0 +1,10 @@
+INSERT INTO krc353_1.TeachingAssistant (TAID, TotalHours, AssignmentMarking, LabInstructor, NumCourses, TutorialSession) VALUES (1, 3, 'y', 'n', 1, 'y');
+INSERT INTO krc353_1.TeachingAssistant (TAID, TotalHours, AssignmentMarking, LabInstructor, NumCourses, TutorialSession) VALUES (2, 6, 'y', 'y', 2, 'n');
+INSERT INTO krc353_1.TeachingAssistant (TAID, TotalHours, AssignmentMarking, LabInstructor, NumCourses, TutorialSession) VALUES (3, 7, 'n', 'n', 3, 'n');
+INSERT INTO krc353_1.TeachingAssistant (TAID, TotalHours, AssignmentMarking, LabInstructor, NumCourses, TutorialSession) VALUES (4, 10, 'y', 'n', 2, 'n');
+INSERT INTO krc353_1.TeachingAssistant (TAID, TotalHours, AssignmentMarking, LabInstructor, NumCourses, TutorialSession) VALUES (5, 3, 'y', 'y', 3, '');
+INSERT INTO krc353_1.TeachingAssistant (TAID, TotalHours, AssignmentMarking, LabInstructor, NumCourses, TutorialSession) VALUES (6, 5, 'y', 'y', 2, 'y');
+INSERT INTO krc353_1.TeachingAssistant (TAID, TotalHours, AssignmentMarking, LabInstructor, NumCourses, TutorialSession) VALUES (7, 7, 'n', 'n', 2, 'y');
+INSERT INTO krc353_1.TeachingAssistant (TAID, TotalHours, AssignmentMarking, LabInstructor, NumCourses, TutorialSession) VALUES (8, 3, 'y', 'n', 1, 'n');
+INSERT INTO krc353_1.TeachingAssistant (TAID, TotalHours, AssignmentMarking, LabInstructor, NumCourses, TutorialSession) VALUES (9, 8, 'n', 'n', 1, 'n');
+INSERT INTO krc353_1.TeachingAssistant (TAID, TotalHours, AssignmentMarking, LabInstructor, NumCourses, TutorialSession) VALUES (10, 4, 'y', 'y', 3, 'n');

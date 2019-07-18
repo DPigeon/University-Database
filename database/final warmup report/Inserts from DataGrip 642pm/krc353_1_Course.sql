@@ -1,0 +1,10 @@
+INSERT INTO krc353_1.Course (CID, CName) VALUES (1, 'COMP352');
+INSERT INTO krc353_1.Course (CID, CName) VALUES (2, 'Mech300');
+INSERT INTO krc353_1.Course (CID, CName) VALUES (3, 'Fr465');
+INSERT INTO krc353_1.Course (CID, CName) VALUES (4, 'Sex230');
+INSERT INTO krc353_1.Course (CID, CName) VALUES (5, 'Bio202');
+INSERT INTO krc353_1.Course (CID, CName) VALUES (6, 'COMP353');
+INSERT INTO krc353_1.Course (CID, CName) VALUES (7, 'His375');
+INSERT INTO krc353_1.Course (CID, CName) VALUES (8, 'Engr301');
+INSERT INTO krc353_1.Course (CID, CName) VALUES (9, 'COMP352');
+INSERT INTO krc353_1.Course (CID, CName) VALUES (10, 'Tal101');

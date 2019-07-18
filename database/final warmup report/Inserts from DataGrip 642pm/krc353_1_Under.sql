@@ -1,0 +1,10 @@
+INSERT INTO krc353_1.Under (DName, PName) VALUES ('Anthropology', 'Arts');
+INSERT INTO krc353_1.Under (DName, PName) VALUES ('Engineering', 'Computer Architecture');
+INSERT INTO krc353_1.Under (DName, PName) VALUES ('Engineering', 'Computer Games');
+INSERT INTO krc353_1.Under (DName, PName) VALUES ('Engineering', 'Computer Hardware');
+INSERT INTO krc353_1.Under (DName, PName) VALUES ('Computer Science', 'Computer Science');
+INSERT INTO krc353_1.Under (DName, PName) VALUES ('Jewish Studies', 'Business');
+INSERT INTO krc353_1.Under (DName, PName) VALUES ('Jewish Studies', 'Economics');
+INSERT INTO krc353_1.Under (DName, PName) VALUES ('Jewish Studies', 'English');
+INSERT INTO krc353_1.Under (DName, PName) VALUES ('Jewish Studies', 'Law');
+INSERT INTO krc353_1.Under (DName, PName) VALUES ('Mathematics', 'Mathematics');

@@ -1,0 +1,10 @@
+INSERT INTO krc353_1.ResearchFunding (RID, Amount) VALUES (1, 1000);
+INSERT INTO krc353_1.ResearchFunding (RID, Amount) VALUES (2, 10000);
+INSERT INTO krc353_1.ResearchFunding (RID, Amount) VALUES (3, 8000);
+INSERT INTO krc353_1.ResearchFunding (RID, Amount) VALUES (4, 200);
+INSERT INTO krc353_1.ResearchFunding (RID, Amount) VALUES (5, 100);
+INSERT INTO krc353_1.ResearchFunding (RID, Amount) VALUES (6, 6000);
+INSERT INTO krc353_1.ResearchFunding (RID, Amount) VALUES (7, 3000);
+INSERT INTO krc353_1.ResearchFunding (RID, Amount) VALUES (8, 1500);
+INSERT INTO krc353_1.ResearchFunding (RID, Amount) VALUES (9, 100);
+INSERT INTO krc353_1.ResearchFunding (RID, Amount) VALUES (10, 20000);
