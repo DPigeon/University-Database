@@ -1,0 +1,11 @@
+INSERT INTO krc353_1.Section (SeID, Semester, Year) VALUES (1, 'Fall', 2018);
+INSERT INTO krc353_1.Section (SeID, Semester, Year) VALUES (2, 'Winter', 2020);
+INSERT INTO krc353_1.Section (SeID, Semester, Year) VALUES (3, 'Summer', 2019);
+INSERT INTO krc353_1.Section (SeID, Semester, Year) VALUES (4, 'Fall', 2019);
+INSERT INTO krc353_1.Section (SeID, Semester, Year) VALUES (5, 'Winter', 2020);
+INSERT INTO krc353_1.Section (SeID, Semester, Year) VALUES (6, 'Summer', 2019);
+INSERT INTO krc353_1.Section (SeID, Semester, Year) VALUES (7, 'Fall', 2019);
+INSERT INTO krc353_1.Section (SeID, Semester, Year) VALUES (8, 'Winter', 2020);
+INSERT INTO krc353_1.Section (SeID, Semester, Year) VALUES (9, 'Summer', 2019);
+INSERT INTO krc353_1.Section (SeID, Semester, Year) VALUES (10, 'Summer', 2019);
+INSERT INTO krc353_1.Section (SeID, Semester, Year) VALUES (11, 'Summer', 2017);

@@ -1,0 +1,11 @@
+INSERT INTO krc353_1.Work (DName, IID) VALUES ('Physics', 1);
+INSERT INTO krc353_1.Work (DName, IID) VALUES ('Mathematics', 2);
+INSERT INTO krc353_1.Work (DName, IID) VALUES ('Biology', 3);
+INSERT INTO krc353_1.Work (DName, IID) VALUES ('Engineering', 4);
+INSERT INTO krc353_1.Work (DName, IID) VALUES ('Gender Studies', 5);
+INSERT INTO krc353_1.Work (DName, IID) VALUES ('Anthropology', 6);
+INSERT INTO krc353_1.Work (DName, IID) VALUES ('Jewish Studies', 8);
+INSERT INTO krc353_1.Work (DName, IID) VALUES ('History', 9);
+INSERT INTO krc353_1.Work (DName, IID) VALUES ('Computer Science', 10);
+INSERT INTO krc353_1.Work (DName, IID) VALUES ('French', 7);
+INSERT INTO krc353_1.Work (DName, IID) VALUES ('Computer Science', 11);

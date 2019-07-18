@@ -1,0 +1,10 @@
+INSERT INTO krc353_1.Program (PName, TotalCredits) VALUES ('Arts', 40);
+INSERT INTO krc353_1.Program (PName, TotalCredits) VALUES ('Business', 22);
+INSERT INTO krc353_1.Program (PName, TotalCredits) VALUES ('Computer Architecture', 15);
+INSERT INTO krc353_1.Program (PName, TotalCredits) VALUES ('Computer Games', 30);
+INSERT INTO krc353_1.Program (PName, TotalCredits) VALUES ('Computer Hardware', 33);
+INSERT INTO krc353_1.Program (PName, TotalCredits) VALUES ('Computer Science', 40);
+INSERT INTO krc353_1.Program (PName, TotalCredits) VALUES ('Economics', 6);
+INSERT INTO krc353_1.Program (PName, TotalCredits) VALUES ('English', 12);
+INSERT INTO krc353_1.Program (PName, TotalCredits) VALUES ('Law', 14);
+INSERT INTO krc353_1.Program (PName, TotalCredits) VALUES ('Mathematics', 23);

@@ -1,0 +1,10 @@
+INSERT INTO krc353_1.Class (CLID, ClassNum, Building, Capacity) VALUES (1, 737, 'A Building', 150);
+INSERT INTO krc353_1.Class (CLID, ClassNum, Building, Capacity) VALUES (2, 434, 'B Building', 125);
+INSERT INTO krc353_1.Class (CLID, ClassNum, Building, Capacity) VALUES (3, 736, 'C Building', 100);
+INSERT INTO krc353_1.Class (CLID, ClassNum, Building, Capacity) VALUES (4, 907, 'D Building', 145);
+INSERT INTO krc353_1.Class (CLID, ClassNum, Building, Capacity) VALUES (5, 675, 'E Building', 190);
+INSERT INTO krc353_1.Class (CLID, ClassNum, Building, Capacity) VALUES (6, 234, 'F Building', 250);
+INSERT INTO krc353_1.Class (CLID, ClassNum, Building, Capacity) VALUES (7, 943, 'G Building', 203);
+INSERT INTO krc353_1.Class (CLID, ClassNum, Building, Capacity) VALUES (8, 390, 'H Building', 109);
+INSERT INTO krc353_1.Class (CLID, ClassNum, Building, Capacity) VALUES (9, 444, 'I Building', 121);
+INSERT INTO krc353_1.Class (CLID, ClassNum, Building, Capacity) VALUES (10, 656, 'J Building', 153);
