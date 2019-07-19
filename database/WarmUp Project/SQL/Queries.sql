@@ -1,13 +1,14 @@
-/* All queries needed for the warmUp project */
-
 /* Query 1 - WORKS */
 /*
  Find ID, first name and last name of all the students who have taken
 Database course and received an A or A+ grade for the course.
  */
 SELECT S.STID as Student_ID, S.FirstName as First_name, S.LastName as Last_name
-FROM Student S INNER JOIN EnrolledIn E ON S.STID = E.STID
-INNER JOIN Section Se ON E.SeID = Se.SeID INNER JOIN Has ON Has.SeID=Se.SeID INNER JOIN Course C ON Has.CID = C.CID
+FROM Student S
+    INNER JOIN EnrolledIn E ON S.STID = E.STID
+    INNER JOIN Section Se ON E.SeID = Se.SeID
+    INNER JOIN Has ON Has.SeID=Se.SeID
+    INNER JOIN Course C ON Has.CID = C.CID
 WHERE C.CName='COMP352' AND (E.Grade='A' OR E.Grade='A+');
 
 /* Query 2 - WORKS */
@@ -17,7 +18,9 @@ are enrolled in at least two different programs in the Computer Science
 department.
  */
 SELECT Student.STID as Student_ID, FirstName as First_name, LastName as Last_name, COUNT(Program.PName) as Number_of_Programs
-FROM Student INNER JOIN Belong B on Student.STID = B.STID inner join Program ON B.PName = Program.PName
+FROM Student
+    INNER JOIN Belong B ON Student.STID = B.STID
+    INNER JOIN Program ON B.PName = Program.PName
 GROUP BY Student.STID
 HAVING COUNT(Program.PName)>1;
 
@@ -26,9 +29,12 @@ HAVING COUNT(Program.PName)>1;
  Find the name of all the instructors who taught Comp 352 in the fall term
 of 2018 but have never taught the same course before
  */
-
 SELECT I.Name, C.CName, S.Year, S.Semester, I.IID, S.SeID, C.CID
-FROM Instructor I INNER JOIN Teach T ON T.IID = I.IID INNER JOIN Section S on T.SeID = S.SeID INNER JOIN Has H on S.SeID = H.SeID INNER JOIN Course C on H.CID = C.CID
+FROM Instructor I
+    INNER JOIN Teach T ON T.IID = I.IID
+    INNER JOIN Section S ON T.SeID = S.SeID
+    INNER JOIN Has H ON S.SeID = H.SeID
+    INNER JOIN Course C ON H.CID = C.CID
 WHERE C.CName = 'COMP352' AND S.Year = 2018 AND S.Semester = 'Fall';
 
 
@@ -38,8 +44,9 @@ WHERE C.CName = 'COMP352' AND S.Year = 2018 AND S.Semester = 'Fall';
 department along with the number of credits required for completion in
 each program
  */
-SELECT DISTINCT P.Pname as Program, P.TotalCredits as Total_credits
-FROM Under inner join Program P on Under.PName = P.PName
+SELECT DISTINCT P.PName as Program, P.TotalCredits as Total_credits
+FROM Under
+    INNER JOIN Program P ON Under.PName = P.PName
 WHERE Under.DName='Computer Science';
 
 /*CHANGED 5 WORKS*/
@@ -47,8 +54,10 @@ WHERE Under.DName='Computer Science';
  Find the name and IDs of all the undergraduate students who do not have
 an advisor.
  */
-SELECT distinct S.STID as Student_ID, S.firstName as First_name
-FROM Student S INNER JOIN Belong B ON B.STID=S.STID INNER JOIN Undergraduate U ON U.STID=S.STID
+SELECT DISTINCT S.STID as Student_ID, S.firstName as First_name
+FROM Student S
+    INNER JOIN Belong B ON B.STID=S.STID
+    INNER JOIN Undergraduate U ON U.STID=S.STID
 WHERE B.Advisor='';
 
 /* Query 6 WORKS */
@@ -57,20 +66,15 @@ WHERE B.Advisor='';
 who are assigned as teaching assistants to Comp 353 for the summer term
 of 2019.
  */
-SELECT S.STID as Student_ID, S.FirstName as First_name, S.LastName as Last_name, TA.AssignmentMarking as assignment_mandate /* assignment marking */
-FROM Section INNER JOIN Has
-    ON Has.SeID=Section.SeID
-    INNER JOIN Course
-        on Has.CID=Course.CID
-    INNER JOIN AssignTo A
-        on Section.SeID = A.SeID
-    INNER JOIN TeachingAssistant TA on A.TAID = TA.TAID
-    INNER JOIN Teach T
-        on Section.SeID = T.SeID
-    INNER JOIN EnrolledIn EI
-        on Section.SeID = EI.SeID
-    INNER JOIN Student S
-        on EI.STID = S.STID
+SELECT S.STID as Student_ID, S.FirstName as First_name, S.LastName as Last_name, TA.AssignmentMarking as assignment_mandate
+FROM Section
+    INNER JOIN Has ON Has.SeID=Section.SeID
+    INNER JOIN Course ON Has.CID=Course.CID
+    INNER JOIN AssignTo A ON Section.SeID = A.SeID
+    INNER JOIN TeachingAssistant TA ON A.TAID = TA.TAID
+    INNER JOIN Teach T ON Section.SeID = T.SeID
+    INNER JOIN EnrolledIn EI ON Section.SeID = EI.SeID
+    INNER JOIN Student S on EI.STID = S.STID
 WHERE CName='COMP353' AND Semester='Summer' AND Year=2019;
 
 /* Query 7 WORKS  */
@@ -79,7 +83,9 @@ WHERE CName='COMP353' AND Semester='Summer' AND Year=2019;
 who have supervised at least 20 students.
  */
 SELECT Instructor.Name
-FROM Instructor INNER JOIN Supervisor S on Instructor.IID = S.IID INNER JOIN Supervises S2 on S.SupID = S2.SupID
+FROM Instructor
+    INNER JOIN Supervisor S ON Instructor.IID = S.IID
+    INNER JOIN Supervises S2 ON S.SupID = S2.SupID
 GROUP BY Instructor.Name
 HAVING COUNT(*) >= 20;
 
@@ -91,20 +97,17 @@ section, room location, start and end time, professor teaching the course,
 max class capacity and number of enrolled students.
  */
 SELECT Course.CName as Course_name , Section.SeID as 'Section', Class.Building, Class.ClassNum as Room_location, Class.Capacity as Room_capacity, ClassTimeslot.StartTime as Class_start_time, ClassTimeslot.EndTime as Class_end_time
-FROM Course INNER JOIN Has
-    ON Course.CID = Has.CID
-    INNER JOIN Section
-        ON Has.SeID = Section.SeID
-    INNER JOIN EnrolledIn EI on Section.SeID = EI.SeID
-    INNER JOIN Student S on EI.STID = S.STID
-    INNER JOIN Belong B on S.STID = B.STID
-    INNER JOIN Program P on B.PName = P.PName
-    INNER JOIN Under U on P.PName = U.PName
-    INNER JOIN Department D on U.DName = D.DName
-    INNER JOIN ClassTimeslot
-        ON Section.SeID = ClassTimeslot.SeID
-    INNER JOIN Class
-        ON ClassTimeslot.CLID = Class.CLID
+FROM Course
+    INNER JOIN Has ON Course.CID = Has.CID
+    INNER JOIN Section ON Has.SeID = Section.SeID
+    INNER JOIN EnrolledIn EI ON Section.SeID = EI.SeID
+    INNER JOIN Student S ON EI.STID = S.STID
+    INNER JOIN Belong B ON S.STID = B.STID
+    INNER JOIN Program P ON B.PName = P.PName
+    INNER JOIN Under U ON P.PName = U.PName
+    INNER JOIN Department D ON U.DName = D.DName
+    INNER JOIN ClassTimeslot ON Section.SeID = ClassTimeslot.SeID
+    INNER JOIN Class ON ClassTimeslot.CLID = Class.CLID
 WHERE D.DName = 'Computer Science' AND Section.Semester='Summer' AND Section.Year=2019;
 
 /* Query 9 */
@@ -113,16 +116,15 @@ WHERE D.DName = 'Computer Science' AND Section.Semester='Summer' AND Section.Yea
 department.
  */
 SELECT D.DName as Department, COUNT(Course.CID) as Number_of_courses
-FROM Course INNER JOIN Has
-    ON Course.CID = Has.CID
-    INNER JOIN Section
-        ON Has.SeID = Section.SeID
-    INNER JOIN EnrolledIn EI on Section.SeID = EI.SeID
-    INNER JOIN Student S on EI.STID = S.STID
-    INNER JOIN Belong B on S.STID = B.STID
-    INNER JOIN Program P on B.PName = P.PName
-    INNER JOIN Under U on P.PName = U.PName
-    INNER JOIN Department D on U.DName = D.DName
+FROM Course
+    INNER JOIN Has ON Course.CID = Has.CID
+    INNER JOIN Section ON Has.SeID = Section.SeID
+    INNER JOIN EnrolledIn EI ON Section.SeID = EI.SeID
+    INNER JOIN Student S ON EI.STID = S.STID
+    INNER JOIN Belong B ON S.STID = B.STID
+    INNER JOIN Program P ON B.PName = P.PName
+    INNER JOIN Under U ON P.PName = U.PName
+    INNER JOIN Department D ON U.DName = D.DName
 GROUP BY D.DName;
 
 /* Query 10 */
@@ -131,5 +133,7 @@ For each program, find the total number of students enrolled into the
 program.
  */
 SELECT Program.PName as Program, COUNT(S.STID) as Enrolled_Students
-FROM  Program INNER JOIN Belong B on Program.PName = B.PName INNER JOIN Student S on B.STID = S.STID
+FROM Program
+    INNER JOIN Belong B ON Program.PName = B.PName
+    INNER JOIN Student S ON B.STID = S.STID
 GROUP BY Program.PName;
