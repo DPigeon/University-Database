@@ -18,9 +18,16 @@ $sql = "SELECT * FROM Course";
 $result = $conn->query($sql);
 
 if($result->num_rows > 0){
-	echo "<table><tr><th>Course ID</th><th>Course Name</th></tr>";
+	echo "<table>
+          <tr>
+            <th>Course ID</th>
+            <th>Course Name</th>
+          </tr>";
 	while($row = $result->fetch_assoc()) {
-		echo "<tr><td>".$row["CID"]."</td><td>".$row["CName"]."</td></tr>";
+		echo "<tr>
+            <td>".$row["CID"]."</td>
+            <td>".$row["CName"]."</td>
+          </tr>";
 	}
 	echo "</table>";
 }

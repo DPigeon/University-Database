@@ -18,9 +18,22 @@ $sql = "SELECT * FROM Student";
 $result = $conn->query($sql);
 
 if($result->num_rows > 0){
-	echo "<table><tr><th>Student ID</th><th>First Name</th><th>Last Name</th><th>Credits</th><th>GPA</th></tr>";
+	echo "<table>
+			<tr>
+				<th>Student ID</th>
+				<th>First Name</th>
+				<th>Last Name</th>
+				<th>Credits</th>
+				<th>GPA</th>
+			</tr>";
 	while($row = $result->fetch_assoc()) {
-		echo "<tr><td>".$row["STID"]."</td><td>".$row["FirstName"]."</td><td>".$row["LastName"]."</td><td>".$row["Credit"]."</td><td>".$row["GPA"]."</td></tr>";
+		echo "<tr>
+				<td>".$row["STID"]."</td>
+				<td>".$row["FirstName"]."</td>
+				<td>".$row["LastName"]."</td>
+				<td>".$row["Credit"]."</td>
+				<td>".$row["GPA"]."</td>
+			</tr>";
 	}
 	echo "</table>";
 }
