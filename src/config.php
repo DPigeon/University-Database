@@ -14,7 +14,7 @@ if ($conn->connect_error) {
 } 
 
 //Query
-$sql = "SELECT * FROM test";
+$sql = "SELECT * FROM Student";
 $result = $conn->query($sql);
 
 if($result->num_rows > 0){
@@ -22,12 +22,12 @@ if($result->num_rows > 0){
 //Update this when you want to display different table information from the database.
 //This is also where HTML and Javascript might come in use.
 
-	echo "Hey, it works! ";
-		echo "<table><tr><th>Attribute 1</th><th>Attribute 2</th></tr>";
+	echo "Hey, it works ! We can fetch Students.";
+		echo "<table><tr><th>Student ID</th><th>First Name</th></tr>";
 		while($row = $result->fetch_assoc()) {
-		echo "<tr><td>".$row["att1"]."</td><td>".$row["att2"]."</td></tr>";
+		echo "<tr><td>".$row["STID"]."</td><td>".$row["FirstName"]."</td></tr>";
 		}
-		echo "</table>";
+	  echo "</table>";
 }
 
 $conn->close();
