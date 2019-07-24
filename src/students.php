@@ -1,42 +1,38 @@
+<?php $title = 'Students'; ?>
+<?php $currentPage = 'students'; ?>
+<?php include('config.php'); ?>
+<?php include('head.php'); ?>
+<?php include('navbar.php'); ?>
+
 <?php
-// Connection information
-$servername = "krc353.encs.concordia.ca";
-$username = "krc353_1";
-$password = "cncrd353";
-$database = "krc353_1";
-
-// Connection
-$conn = new mysqli($servername, $username, $password, $database);
-
-// Verify connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-} 
-
 //Query
 $sql = "SELECT * FROM Student";
 $result = $conn->query($sql);
 
 if($result->num_rows > 0){
-	echo "<table>
-			<tr>
-				<th>Student ID</th>
-				<th>First Name</th>
-				<th>Last Name</th>
-				<th>Credits</th>
-				<th>GPA</th>
-			</tr>";
+	echo "<div class='table-responsive'>
+			<table class='table table-bordered table-sm'>
+				<tr>
+					<th scope='col'>Student ID</th>
+					<th scope='col'>First Name</th>
+					<th scope='col'>Last Name</th>
+					<th scope='col'>Credits</th>
+					<th scope='col'>GPA</th>
+				</tr>";
 	while($row = $result->fetch_assoc()) {
-		echo "<tr>
-				<td>".$row["STID"]."</td>
-				<td>".$row["FirstName"]."</td>
-				<td>".$row["LastName"]."</td>
-				<td>".$row["Credit"]."</td>
-				<td>".$row["GPA"]."</td>
-			</tr>";
+			echo "<tr>
+					<td scope='row'>".$row["STID"]."</td>
+					<td scope='row'>".$row["FirstName"]."</td>
+					<td scope='row'>".$row["LastName"]."</td>
+					<td scope='row'>".$row["Credit"]."</td>
+					<td scope='row'>".$row["GPA"]."</td>
+				</tr>";
 	}
-	echo "</table>";
+	echo "</table>
+	</div>";
 }
 
 $conn->close();
 ?>
+
+<?php include('footer.php'); ?>

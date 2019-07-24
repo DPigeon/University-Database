@@ -1,36 +1,32 @@
+<?php $title = 'Courses'; ?>
+<?php $currentPage = 'courses'; ?>
+<?php include('config.php'); ?>
+<?php include('head.php'); ?>
+<?php include('navbar.php'); ?>
+
 <?php
-// Connection information
-$servername = "krc353.encs.concordia.ca";
-$username = "krc353_1";
-$password = "cncrd353";
-$database = "krc353_1";
-
-// Connection
-$conn = new mysqli($servername, $username, $password, $database);
-
-// Verify connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-} 
-
 //Query
 $sql = "SELECT * FROM Course";
 $result = $conn->query($sql);
 
 if($result->num_rows > 0){
-	echo "<table>
+	echo "<div class='table-responsive'>
+          <table class='table table-bordered table-sm'>
           <tr>
-            <th>Course ID</th>
-            <th>Course Name</th>
+            <th scope='col'>Course ID</th>
+            <th scope='col'>Course Name</th>
           </tr>";
 	while($row = $result->fetch_assoc()) {
 		echo "<tr>
-            <td>".$row["CID"]."</td>
-            <td>".$row["CName"]."</td>
+            <td scope='row'>".$row["CID"]."</td>
+            <td scope='row'>".$row["CName"]."</td>
           </tr>";
 	}
-	echo "</table>";
+	echo "</table>
+	</div>";
 }
 
 $conn->close();
 ?>
+
+<?php include('footer.php'); ?>

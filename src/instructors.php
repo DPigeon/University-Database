@@ -1,36 +1,32 @@
+<?php $title = 'Instructors'; ?>
+<?php $currentPage = 'instructors'; ?>
+<?php include('config.php'); ?>
+<?php include('head.php'); ?>
+<?php include('navbar.php'); ?>
+
 <?php
-// Connection information
-$servername = "krc353.encs.concordia.ca";
-$username = "krc353_1";
-$password = "cncrd353";
-$database = "krc353_1";
-
-// Connection
-$conn = new mysqli($servername, $username, $password, $database);
-
-// Verify connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-} 
-
 //Query
 $sql = "SELECT * FROM Instructor";
 $result = $conn->query($sql);
 
 if($result->num_rows > 0){
-	echo "<table>
+	echo "<div class='table-responsive'>
+          <table class='table table-bordered table-sm'>
           <tr>
-            <th>Instructor ID</th>
-            <th>Instructor Name</th>
+            <th scope='col'>Instructor ID</th>
+            <th scope='col'>Instructor Name</th>
           </tr>";
 	while($row = $result->fetch_assoc()) {
 		echo "<tr>
-            <td>".$row["IID"]."</td> 
-            <td>".$row["Name"]."</td>
+            <td scope='row'>".$row["IID"]."</td> 
+            <td scope='row'>".$row["Name"]."</td>
           </tr>";
 	}
-	echo "</table>";
+  echo "</table>
+  </div>";
 }
 
 $conn->close();
 ?>
+
+<?php include('footer.php'); ?>
