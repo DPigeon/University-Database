@@ -24,6 +24,12 @@ CREATE TABLE DeptCamp
     FOREIGN KEY (DName) REFERENCES Department (DName),
     FOREIGN KEY (Chairman) REFERENCES Department (Chairman)
 );
+Create TABLE Within
+(
+    CID INT,
+    DName CHAR(30),
+    FOREIGN KEY (CID) REFERENCES Course (CID)
+)
 
 CREATE TABLE BlockCamp
 (
@@ -160,37 +166,45 @@ CREATE TABLE InsHomeAddress
     PostalCode INT
 );
 
--- I / Deniz added the following (which is all commented), and I changed nothing above, so if what I did is bad, all that needs to be done is removed this comment and everything below it.
-/*
-CREATE TABLE Student(
+/* is good Deniz */
+
+CREATE TABLE Student
+(
+    STID INT,
     SSN INT,
-    GPA DECIMAL(1,1),
-    PhoneNumber INT,
+    Email CHAR(30),
+    GPA FLOAT,
+    Credit INT,
+    Phone INT,
     FirstName VARCHAR(30),
     LastName VARCHAR(30),
-    PRIMARY KEY(SSN)
+    PRIMARY KEY(STID, SSN)
 );
 
-CREATE TABLE Graduate (
+CREATE TABLE Graduate
+(
+    STID INT,
     SSN INT,
-    PRIMARY KEY(SSN),
-    FOREIGN KEY SSN REFERENCES Student(SSN)
-)
+    Thesis INT DEFAULT 0,
+    PRIMARY KEY(STID, SSN),
+    FOREIGN KEY (STID) REFERENCES Student(STID),
+    FOREIGN KEY (SSN) REFERENCES Student(SSN)
+);
 
-CREATE TABLE Supervisor(
+CREATE TABLE Supervisor
+(
     SupervisorID INT,
-    FirstName VARCHAR(30),
-    LastName VARCHAR(30),
     PRIMARY KEY(SupervisorID)
 );
 
 
-CREATE TABLE Supervises(
-    SSSN INT,
-    GSSN INT,
-    PRIMARY KEY(SSSN, GSSN),
-    FOREIGN KEY (SSSN) REFERENCES Supervisor(SSN),
-    FOREIGN KEY (GSSN) REFERENCES Graduate(SSN)
+CREATE TABLE Supervises
+(
+    SupID INT,
+    STID INT,
+    SSN INT,
+    FOREIGN KEY (SupID) REFERENCES Supervisor(SupID),
+    FOREIGN KEY (STID) REFERENCES Graduate(STID),
+    FOREIGN KEY (SSN) REFERENCES Graduate(SSN)
 );
 
-*/
