@@ -159,3 +159,38 @@ CREATE TABLE InsHomeAddress
     CivicNumber INT,
     PostalCode INT
 );
+
+-- I / Deniz added the following (which is all commented), and I changed nothing above, so if what I did is bad, all that needs to be done is removed this comment and everything below it.
+/*
+CREATE TABLE Student(
+    SSN INT,
+    GPA DECIMAL(1,1),
+    PhoneNumber INT,
+    FirstName VARCHAR(30),
+    LastName VARCHAR(30),
+    PRIMARY KEY(SSN)
+);
+
+CREATE TABLE Graduate (
+    SSN INT,
+    PRIMARY KEY(SSN),
+    FOREIGN KEY SSN REFERENCES Student(SSN)
+)
+
+CREATE TABLE Supervisor(
+    SupervisorID INT,
+    FirstName VARCHAR(30),
+    LastName VARCHAR(30),
+    PRIMARY KEY(SupervisorID)
+);
+
+
+CREATE TABLE Supervises(
+    SSSN INT,
+    GSSN INT,
+    PRIMARY KEY(SSSN, GSSN),
+    FOREIGN KEY (SSSN) REFERENCES Supervisor(SSN),
+    FOREIGN KEY (GSSN) REFERENCES Graduate(SSN)
+);
+
+*/
