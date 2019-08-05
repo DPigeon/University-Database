@@ -394,12 +394,12 @@ create table if not exists Instructor
 (
 	IID int not null
 		primary key,
-	Name char(30) null,
 	ISSN int not null,
 	Phone varchar(30) null,
 	FirstName varchar(30) null,
 	SupID int null,
 	Email varchar(30) null,
+	LastName char(30) null,	
 	constraint Instructor_Supervisor_SupID_fk
 		foreign key (SupID) references Supervisor (SupID)
 			on update cascade
