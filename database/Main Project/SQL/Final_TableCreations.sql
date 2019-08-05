@@ -1,6 +1,6 @@
 create schema krc353_1 collate latin1_swedish_ci;
 
-create table Block
+create table if not exists Block
 (
 	BName char(30) not null
 		primary key,
@@ -9,14 +9,14 @@ create table Block
 	NumRooms int null
 );
 
-create table Campus
+create table if not exists Campus
 (
 	CampID int not null
 		primary key,
 	Name char(30) null
 );
 
-create table BlockCamp
+create table if not exists BlockCamp
 (
 	CampID int null,
 	BName varchar(30) default '' not null
@@ -27,21 +27,21 @@ create table BlockCamp
 		foreign key (CampID) references Campus (CampID)
 );
 
-create table Course
+create table if not exists Course
 (
 	CID int not null
 		primary key,
 	CName char(30) null
 );
 
-create table Department
+create table if not exists Department
 (
 	DName char(30) not null
 		primary key,
 	Chairman char(30) not null
 );
 
-create table DeptCamp
+create table if not exists DeptCamp
 (
 	CampID int not null,
 	DName varchar(30) default '0' not null
@@ -54,13 +54,13 @@ create table DeptCamp
 			on update cascade
 );
 
-create table PTInstructor
+create table if not exists PTInstructor
 (
 	IID int default 0 not null
 		primary key
 );
 
-create table `Prereq-Follow`
+create table if not exists `Prereq-Follow`
 (
 	CID1 int not null,
 	CID2 int not null,
@@ -73,21 +73,21 @@ create table `Prereq-Follow`
 			on update cascade
 );
 
-create table Program
+create table if not exists Program
 (
 	PName char(30) not null
 		primary key,
 	TotalCredits int null
 );
 
-create table ResearchFunding
+create table if not exists ResearchFunding
 (
 	RID int not null
 		primary key,
 	Amount int null
 );
 
-create table Room
+create table if not exists Room
 (
 	RoID int auto_increment
 		primary key,
@@ -95,7 +95,7 @@ create table Room
 	Capacity int null
 );
 
-create table BlockRoom
+create table if not exists BlockRoom
 (
 	RoID int not null,
 	BName varchar(30) not null,
@@ -106,7 +106,7 @@ create table BlockRoom
 		foreign key (RoID) references Room (RoID)
 );
 
-create table Classroom
+create table if not exists Classroom
 (
 	ROID int default 0 not null
 		primary key,
@@ -115,7 +115,7 @@ create table Classroom
 			on update cascade
 );
 
-create table ConferenceRoom
+create table if not exists ConferenceRoom
 (
 	RoID int not null
 		primary key,
@@ -124,7 +124,7 @@ create table ConferenceRoom
 			on update cascade on delete cascade
 );
 
-create table LabRoom
+create table if not exists LabRoom
 (
 	RoID int not null
 		primary key,
@@ -133,7 +133,7 @@ create table LabRoom
 			on update cascade
 );
 
-create table Facility
+create table if not exists Facility
 (
 	equipment varchar(30) null,
 	ROID int default 0 not null
@@ -146,7 +146,7 @@ create table Facility
 			on update cascade
 );
 
-create table Office
+create table if not exists Office
 (
 	RoID int not null
 		primary key,
@@ -155,7 +155,7 @@ create table Office
 			on update cascade on delete cascade
 );
 
-create table Section
+create table if not exists Section
 (
 	SeID int not null
 		primary key,
@@ -163,7 +163,7 @@ create table Section
 	Year int null
 );
 
-create table ClassTimeslot
+create table if not exists ClassTimeslot
 (
 	StartTime time default '00:00:00' not null,
 	DayWeek varchar(30) default '' not null,
@@ -178,7 +178,7 @@ create table ClassTimeslot
 create index SeID
 	on ClassTimeslot (SeID);
 
-create table Contracts
+create table if not exists Contracts
 (
 	CID int not null,
 	Date date null,
@@ -198,7 +198,7 @@ create table Contracts
 create index Contracts_TeachingAssistant_TAID_fk
 	on Contracts (TAID);
 
-create table Has
+create table if not exists Has
 (
 	CID int null,
 	SeID int default 0 not null
@@ -212,7 +212,7 @@ create table Has
 create index CID
 	on Has (CID);
 
-create table HasContract
+create table if not exists HasContract
 (
 	IID int default 0 not null,
 	ContractID int default 0 not null,
@@ -225,7 +225,7 @@ create table HasContract
 			on update cascade
 );
 
-create table Schedule
+create table if not exists Schedule
 (
 	StartTime time null,
 	DayWeek varchar(30) null,
@@ -239,7 +239,7 @@ create table Schedule
 			on update cascade
 );
 
-create table Student
+create table if not exists Student
 (
 	STID int not null
 		primary key,
@@ -252,7 +252,7 @@ create table Student
 	Email varchar(30) null
 );
 
-create table Belong
+create table if not exists Belong
 (
 	STID int not null,
 	PName char(30) default '' not null,
@@ -268,7 +268,7 @@ create table Belong
 create index PName
 	on Belong (PName);
 
-create table EnrolledIn
+create table if not exists EnrolledIn
 (
 	STID int default 0 not null,
 	SeID int default 0 not null,
@@ -284,7 +284,7 @@ create table EnrolledIn
 create index SeID
 	on EnrolledIn (SeID);
 
-create table Graduate
+create table if not exists Graduate
 (
 	STID int default 0 not null
 		primary key,
@@ -294,7 +294,7 @@ create table Graduate
 			on update cascade
 );
 
-create table Fund
+create table if not exists Fund
 (
 	STID int not null
 		primary key,
@@ -306,7 +306,7 @@ create table Fund
 		foreign key (RID) references ResearchFunding (RID)
 );
 
-create table GradAwards
+create table if not exists GradAwards
 (
 	AwardName char(30) default '' not null,
 	DateReceived date default '0000-00-00' not null,
@@ -317,7 +317,7 @@ create table GradAwards
 			on update cascade
 );
 
-create table GradExperience
+create table if not exists GradExperience
 (
 	JobPosition char(30) default '' not null,
 	STID int default 0 not null,
@@ -329,7 +329,7 @@ create table GradExperience
 			on update cascade
 );
 
-create table GradPublications
+create table if not exists GradPublications
 (
 	PubName char(30) default '' not null,
 	PubDate date default '0000-00-00' not null,
@@ -343,7 +343,7 @@ create table GradPublications
 create index GradPublications_Graduate_STID_SSN_fk
 	on GradPublications (STID);
 
-create table GradUniversityDegrees
+create table if not exists GradUniversityDegrees
 (
 	UniDegree char(30) default '' not null,
 	UniName char(30) default '' not null,
@@ -358,7 +358,7 @@ create table GradUniversityDegrees
 create index GradUniversityDegrees_Graduate_STID_SSN_fk
 	on GradUniversityDegrees (STID);
 
-create table StDegHist
+create table if not exists StDegHist
 (
 	DegreeName char(30) not null,
 	OverallAvg float null,
@@ -371,7 +371,7 @@ create table StDegHist
 			on update cascade
 );
 
-create table StHomeAddress
+create table if not exists StHomeAddress
 (
 	City char(30) null,
 	Province char(30) null,
@@ -384,13 +384,13 @@ create table StHomeAddress
 			on update cascade
 );
 
-create table Supervisor
+create table if not exists Supervisor
 (
 	SupID int not null
 		primary key
 );
 
-create table Instructor
+create table if not exists Instructor
 (
 	IID int not null
 		primary key,
@@ -405,7 +405,7 @@ create table Instructor
 			on update cascade
 );
 
-create table FTInstructor
+create table if not exists FTInstructor
 (
 	IID int not null
 		primary key,
@@ -414,7 +414,7 @@ create table FTInstructor
 			on update cascade
 );
 
-create table InsAwards
+create table if not exists InsAwards
 (
 	AwardName char(30) default '' not null,
 	DateReceived date default '0000-00-00' not null,
@@ -425,7 +425,7 @@ create table InsAwards
 			on update cascade
 );
 
-create table InsExperience
+create table if not exists InsExperience
 (
 	JobPosition varchar(30) default '' not null,
 	DateStarted date default '0000-00-00' not null,
@@ -437,7 +437,7 @@ create table InsExperience
 			on update cascade
 );
 
-create table InsHomeAddress
+create table if not exists InsHomeAddress
 (
 	City char(30) null,
 	Province char(30) null,
@@ -450,7 +450,7 @@ create table InsHomeAddress
 			on update cascade
 );
 
-create table InsPublications
+create table if not exists InsPublications
 (
 	PubName varchar(30) default '' not null,
 	PubDate date default '0000-00-00' not null,
@@ -461,7 +461,7 @@ create table InsPublications
 			on update cascade
 );
 
-create table InsUniversityDegrees
+create table if not exists InsUniversityDegrees
 (
 	UniName varchar(30) default '' not null,
 	UniDegree varchar(30) default '' not null,
@@ -473,7 +473,7 @@ create table InsUniversityDegrees
 			on update cascade
 );
 
-create table SalaryHist
+create table if not exists SalaryHist
 (
 	Salary float not null,
 	IID int not null,
@@ -483,7 +483,7 @@ create table SalaryHist
 			on update cascade
 );
 
-create table Supervises
+create table if not exists Supervises
 (
 	SupID int not null,
 	STID int not null,
@@ -495,7 +495,7 @@ create table Supervises
 		foreign key (SupID) references Supervisor (SupID)
 );
 
-create table Teach
+create table if not exists Teach
 (
 	SeID int default 0 not null,
 	IID int default 0 not null,
@@ -508,7 +508,7 @@ create table Teach
 			on update cascade
 );
 
-create table TeachingAssistant
+create table if not exists TeachingAssistant
 (
 	TAID int not null
 		primary key,
@@ -519,7 +519,7 @@ create table TeachingAssistant
 	TutorialSession char null
 );
 
-create table AssignHist
+create table if not exists AssignHist
 (
 	AssignID int not null,
 	TAID int default 0 not null,
@@ -529,7 +529,7 @@ create table AssignHist
 			on update cascade
 );
 
-create table AssignTo
+create table if not exists AssignTo
 (
 	SeID int default 0 not null,
 	TAID int default 0 not null,
@@ -543,7 +543,7 @@ create table AssignTo
 create index TAID
 	on AssignTo (TAID);
 
-create table InvolvedIn
+create table if not exists InvolvedIn
 (
 	ContractID int default 0 not null,
 	TAID int default 0 not null,
@@ -556,7 +556,7 @@ create table InvolvedIn
 			on update cascade
 );
 
-create table IsTA
+create table if not exists IsTA
 (
 	STID int default 0 not null
 		primary key,
@@ -569,7 +569,7 @@ create table IsTA
 			on update cascade
 );
 
-create table Under
+create table if not exists Under
 (
 	DName char(30) null,
 	PName char(30) default '' not null
@@ -581,7 +581,7 @@ create table Under
 		foreign key (PName) references Program (PName)
 );
 
-create table Undergraduate
+create table if not exists Undergraduate
 (
 	STID int default 0 not null
 		primary key,
@@ -590,7 +590,7 @@ create table Undergraduate
 			on update cascade
 );
 
-create table Within
+create table if not exists Within
 (
 	CID int default 0 not null
 		primary key,
@@ -602,7 +602,7 @@ create table Within
 		foreign key (CID) references Course (CID)
 );
 
-create table Work
+create table if not exists Work
 (
 	DName varchar(30) not null,
 	IID int default 0 not null,
@@ -614,4 +614,3 @@ create table Work
 		foreign key (IID) references Instructor (IID)
 			on update cascade
 );
-
