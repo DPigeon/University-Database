@@ -5,14 +5,15 @@
  */
 
 INSERT INTO Instructor
-VALUES(IID, input, input);
-
-DELETE FROM Instructor
-WHERE IID = input
+VALUES(IID, ISSN, Phone, FirstName, SupID, Email, LastName);
 
 UPDATE Instructor 
 SET input = input 
 WHERE IID = input
+
+DELETE FROM Instructor
+WHERE IID = input
+
 
 
 /* ii)
@@ -20,7 +21,7 @@ WHERE IID = input
  */
 
 INSERT INTO Student
-VALUES(STID, input, input);
+VALUES(STID, Credit, FirstName, LastName, GPA, SSN, Phone, Email);
 
 DELETE FROM Student
 WHERE STID = input
@@ -34,7 +35,7 @@ WHERE STID = input
  */
 
 INSERT INTO TeachingAssistant
-VALUES(TAID, input, input);
+VALUES(TAID, TotalHours, AssignmentMarking, LabInstructor, NbCourses, TutorialSession);
 
 DELETE FROM TeachingAssistant
 WHERE TAID = input
@@ -47,7 +48,7 @@ WHERE TAID = input
  * Give a list of all campuses.
  */
 
-SELECT *
+SELECT distinct Name
 FROM Campus
 GROUP BY Name
 
@@ -55,10 +56,9 @@ GROUP BY Name
  * Give a list of buildings on a given campus. 
  */
 
-SELECT *
+SELECT BName
 FROM BlockCamp
-WHERE CampID = 'input'
-GROUP BY Name
+WHERE CampID = 2
 
 /* vi)
  * Give details of a specific building (this include address of the building,
@@ -67,9 +67,13 @@ GROUP BY Name
  * if it is a classroom or a lab.
  */
 
-SELECT B.Address, B.NumFloors, B.NumRooms, B.NumFloors, LCR.Capacity, LCR.Type, F.Equipment
-FROM Block B, LabClassRoom LCR, Facilities F
-WHERE B.Name = 'input'
+SELECT B.Address, B.NumFloors, B.NumRooms, R.type, CASE
+WHEN R.Type='Labroom' or R.Type='Classroom' THEN R.Capacity
+END as 'Capacity', CASE
+WHEN R.Type='Labroom' or R.Type='Classroom' THEN F.equipment
+END as 'Equipment'
+FROM Block B inner join BlockRoom BR on B.BName=BR.BName inner join Room R on R.RoID=BR.RoID inner join Contains C on R.RoID=C.RoID inner join Facility F on F.facID=C.facID
+WHERE B.BName = 'input'
 
 
 /* vii)
@@ -78,16 +82,17 @@ WHERE B.Name = 'input'
  */
 
 SELECT P.Pname, P.TotalCredits
-FROM Program P, Department D
-WHERE D.Pname=P.Pname AND DName='input'
+FROM Program P inner join Under U on P.PName = U.PName inner join Department D on D.DName=U.DName
+WHERE D.DName='input'
 
 /* viii)
  * Get a list of all courses offered in a given term by a specific program.
  */
 
-SELECT C.Cname
-FROM Course C, Has H, Section S, Department D, Within W, Under U
-WHERE C.CID=H.CID AND H.SeID=Section.SeID AND S.Semester='input' AND C.CID = W.CID AND W.Dname=D.Dname AND U.Dname=D.Dname AND U.PName='input'
+SELECT C.Cname, P.Pname
+FROM Section S inner join Has H on S.SeID = H.SeID inner join Course C on C.CID = H.CID inner join Within W on W.CID = C.CID inner join Department D on W.Dname = D.Dname inner join Under U on U.Dname = D.Dname inner join Program P on P.Pname = U.Pname 
+WHERE S.Semester='input'
+GROUP BY P.Pname
 
 /* ix)
  * Get the details of all the courses offered by a specific department for a
@@ -96,9 +101,15 @@ WHERE C.CID=H.CID AND H.SeID=Section.SeID AND S.Semester='input' AND C.CID = W.C
  * number of enrolled students.
  */
 
+
 /* Not completed yet */
-SELECT C.Cname, S.SeID, B.Address, CLT.startTime, CLT.endtime
-FROM Course C, Section S, ClassTimeSlot CLT, Block B
+SELECT distinct C.Cname, S.SeID, CT.StartTime, CT.EndTime, B.Address, I.FirstName, R.Capacity
+FROM Instructor I inner join Teach T on I.IID = T.IID inner join  Section S inner join Has H on S.SeID = H.SeID inner join Course C on H.CID = C.CID inner join Within W on C.CID = W.CID inner join Department D on D.Dname = W.Dname inner join DeptCamp DC on DC.Dname = D.Dname inner join Campus Ca on Ca.CampID = DC.CampID  inner join BlockCamp BC on BC.CampID = Ca.CampID inner join Block B on B.BName = BC.BName inner join BlockRoom BR on BR.BName = B.BName inner join Room R on R.RoID=BR.RoID inner join ClassTimeslot CT on S.SeID = CT.SeID inner join Under U on D.DName = U.DName inner join Program P on U.PName = P.PName inner join Belong B2 on P.PName = B2.PName
+WHERE D.Dname = 'Physics'  AND S.Semester = 'Winter'
+/*  add count( distinct B2.STID)
+    fix instructor reltionshios */
+
+
 
 /* x)
  * SELECT C.Cname, S.SeID, B.Address, CLT.startTime,CLT.endtime
