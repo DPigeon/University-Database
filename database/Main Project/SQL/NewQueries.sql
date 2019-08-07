@@ -14,8 +14,6 @@ WHERE IID = input
 DELETE FROM Instructor
 WHERE IID = input
 
-
-
 /* ii)
  * Create/Delete/Edit/Display a Student. 
  */
@@ -90,7 +88,7 @@ WHERE D.DName='input'
  */
 
 SELECT C.Cname, P.Pname
-FROM Section S inner join Has H on S.SeID = H.SeID inner join Course C on C.CID = H.CID inner join Within W on W.CID = C.CID inner join Department D on W.Dname = D.Dname inner join Under U on U.Dname = D.Dname inner join Program P on P.Pname = U.Pname 
+FROM Section S inner join Has H on S.SeID = H.SeID inner join Course C on C.CID = H.CID inner join Within W on W.CID = C.CID inner join Department D on W.Dname = D.Dname inner join Under U on U.Dname = D.Dname inner join Program P on P.Pname = U.Pname
 WHERE S.Semester='input'
 GROUP BY P.Pname
 
@@ -104,11 +102,8 @@ GROUP BY P.Pname
 
 /* Not completed yet */
 SELECT distinct C.Cname, S.SeID, CT.StartTime, CT.EndTime, B.Address, I.FirstName, R.Capacity
-FROM Instructor I inner join Teach T on I.IID = T.IID inner join  Section S inner join Has H on S.SeID = H.SeID inner join Course C on H.CID = C.CID inner join Within W on C.CID = W.CID inner join Department D on D.Dname = W.Dname inner join DeptCamp DC on DC.Dname = D.Dname inner join Campus Ca on Ca.CampID = DC.CampID  inner join BlockCamp BC on BC.CampID = Ca.CampID inner join Block B on B.BName = BC.BName inner join BlockRoom BR on BR.BName = B.BName inner join Room R on R.RoID=BR.RoID inner join ClassTimeslot CT on S.SeID = CT.SeID inner join Under U on D.DName = U.DName inner join Program P on U.PName = P.PName inner join Belong B2 on P.PName = B2.PName
-WHERE D.Dname = 'Physics'  AND S.Semester = 'Winter'
-/*  add count( distinct B2.STID)
-    fix instructor reltionshios */
-
+FROM Instructor I inner join Teach T on I.IID = T.IID inner join Section S inner join Has H on S.SeID = H.SeID inner join Course C on H.CID = C.CID inner join Within W on C.CID = W.CID inner join Department D on D.Dname = W.Dname inner join DeptCamp DC on DC.Dname = D.Dname inner join Campus Ca on Ca.CampID = DC.CampID inner join BlockCamp BC on BC.CampID = Ca.CampID inner join Block B on B.BName = BC.BName inner join BlockRoom BR on BR.BName = B.BName inner join Room R on R.RoID=BR.RoID inner join ClassTimeslot CT on S.SeID = CT.SeID inner join Under U on D.DName = U.DName inner join Program P on U.PName = P.PName inner join Belong B2 on P.PName=B2.PName 
+WHERE D.Dname = 'Physics' AND S.Semester = 'Winter'
 
 
 /* x)
@@ -155,9 +150,9 @@ GROUP BY Advisor.Name
 
 SELECT Supervisor.SupervisorID, Supervisor.FirstName, Supervisor.LastName
 FROM Graduate GS
-    INNER JOIN Student S ON GS.SSN = S.SSN
-    INNER JOIN Supervises ON Supervises.GSSN = GS.SSN
-    INNER JOIN Supervisor ON Supervises.SSSN = Supervisor.SSN
+  INNER JOIN Student S ON GS.SSN = S.SSN
+  INNER JOIN Supervises ON Supervises.GSSN = GS.SSN
+  INNER JOIN Supervisor ON Supervises.SSSN = Supervisor.SSN
 WHERE Supervisor.SSN = 'GIVEN_SSN'
 
 /* xv)
@@ -213,7 +208,7 @@ WHERE Course.CID = Student.STID
 
 INSERT INTO Section
 VALUES
-    (SeID, STID, name, whatever);
+  (SeID, STID, name, whatever);
 
 /* xxi)
  * Drop a course from a specific student (look at other dependant tables too)
