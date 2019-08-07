@@ -23,7 +23,7 @@ if($result->num_rows > 0){
             <td scope='row'>".$row["FirstName"]."</td>
             <td scope='row'>".$row["LastName"]."</td>
             <td scope='row'>".$row["Email"]."</td>
-            <td scope='row'>".$row["Phone"]."</td>
+            <td scope='row'>".$row["Phone"]." <button class='btn-success'>Edit</button> <button class='btn-danger'>Delete</button></td>
           </tr>";
 	}
   echo "</table>

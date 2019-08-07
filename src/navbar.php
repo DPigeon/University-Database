@@ -12,6 +12,7 @@
             'Students' => '/students.php',
             'Courses' => '/courses.php',
             'Instructors' => '/instructors.php',
+            'TAs' => '/teachingAssistants.php'
         );
 
         foreach ($urls as $name => $url) {

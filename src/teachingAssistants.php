@@ -1,12 +1,14 @@
-<?php $title = 'Students'; ?>
-<?php $currentPage = 'students'; ?>
+<?php $title = 'Teaching Assistants'; ?>
+<?php $currentPage = 'teachingAssistants'; ?>
 <?php include('config.php'); ?>
 <?php include('head.php'); ?>
 <?php include('navbar.php'); ?>
 
 <?php
 //Query
-$sql = "SELECT * FROM Student";
+$sql = "SELECT S.FirstName, S.LastName, S.Email, S.Credit, S.GPA
+		FROM Student S INNER JOIN IsTA TA on TA.STID = S.STID INNER JOIN TeachingAssistant T on T.TAID = TA.TAID
+		WHERE S.GPA > 3.2";
 $result = $conn->query($sql);
 
 if($result->num_rows > 0){

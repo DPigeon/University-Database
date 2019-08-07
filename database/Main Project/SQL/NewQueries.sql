@@ -11,6 +11,10 @@ UPDATE Instructor
 SET input = input 
 WHERE IID = input
 
+/* Display */
+SELECT *
+FROM Instructor
+
 DELETE FROM Instructor
 WHERE IID = input
 
@@ -24,6 +28,10 @@ VALUES(STID, Credit, FirstName, LastName, GPA, SSN, Phone, Email);
 DELETE FROM Student
 WHERE STID = input
 
+/* Display */
+SELECT *
+FROM Student;
+
 UPDATE Student 
 SET input = input 
 WHERE STID = input
@@ -32,11 +40,17 @@ WHERE STID = input
  * Create/Delete/Edit/Display a Teaching Assistant 
  */
 
+/* Check if STID is in Graduate table first */
 INSERT INTO TeachingAssistant
 VALUES(TAID, TotalHours, AssignmentMarking, LabInstructor, NbCourses, TutorialSession);
 
 DELETE FROM TeachingAssistant
 WHERE TAID = input
+
+/* Display */
+SELECT S.FirstName, S.LastName, S.Email, S.Credit, S.GPA
+FROM Student S INNER JOIN IsTA TA on TA.STID = S.STID
+WHERE S.GPA > 3.2
 
 UPDATE TeachingAssistant
 SET input = input 
