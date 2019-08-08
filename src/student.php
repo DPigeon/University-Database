@@ -1,12 +1,15 @@
-<?php $title = 'Students'; ?>
-<?php $currentPage = 'students'; ?>
+<?php $title = 'Student'; ?>
+<?php $currentPage = 'student'; ?>
 <?php include('config.php'); ?>
 <?php include('head.php'); ?>
 <?php include('navbar.php'); ?>
 
 <?php
 //Query
-$sql = "SELECT * FROM Student";
+$studentId = $_GET["id"];
+$sql = "SELECT * 
+        FROM Student S
+        WHERE S.STID = $studentId";
 $result = $conn->query($sql);
 
 if($result->num_rows > 0){
@@ -18,8 +21,6 @@ if($result->num_rows > 0){
 					<th scope='col'>Email</th>
 					<th scope='col'>Credits</th>
 					<th scope='col'>GPA</th>
-					<th scope='col'>Info</th>
-					<th scope='col'>Manage</th>
 				</tr>";
 	while($row = $result->fetch_assoc()) {
 			echo "<tr>
@@ -28,8 +29,6 @@ if($result->num_rows > 0){
 					<td scope='row'>".$row["Email"]."</td>
 					<td scope='row'>".$row["Credit"]."</td>
 					<td scope='row'>".$row["GPA"]."</td>
-					<td scope='row><a href='student.php?id=".$row["STID"]."'>Profile</a></td>
-					<td scope='row'><button class='btn-success'>Edit</button> <button class='btn-danger'>Delete</button></td>
 				</tr>";
 	}
 	echo "</table>

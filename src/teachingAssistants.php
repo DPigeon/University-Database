@@ -20,6 +20,7 @@ if($result->num_rows > 0){
 					<th scope='col'>Email</th>
 					<th scope='col'>Credits</th>
 					<th scope='col'>GPA</th>
+					<th scope='col'>Manage</th>
 				</tr>";
 	while($row = $result->fetch_assoc()) {
 			echo "<tr>
@@ -27,7 +28,8 @@ if($result->num_rows > 0){
 					<td scope='row'>".$row["LastName"]."</td>
 					<td scope='row'>".$row["Email"]."</td>
 					<td scope='row'>".$row["Credit"]."</td>
-					<td scope='row'>".$row["GPA"]." <button class='btn-success'>Edit</button> <button class='btn-danger'>Delete</button></td>
+					<td scope='row'>".$row["GPA"]."</td>
+					<td scope='row'><button class='btn-success'>Edit</button> <button class='btn-danger'>Delete</button></td>
 				</tr>";
 	}
 	echo "</table>

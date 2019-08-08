@@ -14,10 +14,12 @@ if($result->num_rows > 0){
           <table class='table table-bordered table-sm'>
           <tr>
           <th scope='col'>Course Name</th>
+          <th scope='col'>Manage</th>
           </tr>";
 	while($row = $result->fetch_assoc()) {
 		echo "<tr>
-    <td scope='row'>".$row["CName"]." <button class='btn-success'>Add Student</button></td>
+    <td scope='row'>".$row["CName"]."</td>
+    <td scope='row'><button class='btn-success'>Edit</button> <button class='btn-danger'>Delete</button></td>
           </tr>";
 	}
 	echo "</table>
