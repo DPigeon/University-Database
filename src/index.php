@@ -1,8 +1,8 @@
 <?php $title = 'Home'; ?>
 <?php $currentPage = 'index'; ?>
-<?php include('head.php'); ?>
-<?php include('navbar.php'); ?>
+<?php //include('head.php'); ?>
+<?php //include('navbar.php'); ?>
 <body>
-  <?php include('addStudent.php'); ?>
+  <?php include_once('student_data_gathering.php'); ?>
 </body>
-<?php include('footer.php'); ?>
+<?php //include('footer.php'); ?>

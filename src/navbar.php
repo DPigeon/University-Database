@@ -9,10 +9,10 @@
     <?php
         $urls = array(
             'Home' => '/',
-            'Students' => '/students.php',
-            'Courses' => '/courses.php',
-            'Instructors' => '/instructors.php',
-            'TAs' => '/teachingAssistants.php'
+            'Students' => '/student_data_gathering.php',
+            'Courses' => '/course_data_gathering.php',
+            'Instructors' => '/instructor_data_gathering.php',
+            'Search' => 'search.php' //'result_displaying.php'
         );
 
         foreach ($urls as $name => $url) {
