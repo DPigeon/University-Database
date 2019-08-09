@@ -84,7 +84,11 @@ WHEN R.Type='Labroom' or R.Type='Classroom' THEN R.Capacity
 END as 'Capacity', CASE
 WHEN R.Type='Labroom' or R.Type='Classroom' THEN F.equipment
 END as 'Equipment'
-FROM Block B inner join BlockRoom BR on B.BName=BR.BName inner join Room R on R.RoID=BR.RoID inner join Contains C on R.RoID=C.RoID inner join Facility F on F.facID=C.facID
+FROM Block B
+  INNER JOIN BlockRoom BR on B.BName=BR.BName
+  INNER JOIN Room R on R.RoID=BR.RoID
+  INNER JOIN Contains C on R.RoID=C.RoID
+  INNER JOIN Facility F on F.facID=C.facID
 WHERE B.BName = 'input'
 
 
@@ -94,7 +98,9 @@ WHERE B.BName = 'input'
  */
 
 SELECT P.Pname, P.TotalCredits
-FROM Program P inner join Under U on P.PName = U.PName inner join Department D on D.DName=U.DName
+FROM Program P
+  INNER JOIN Under U on P.PName = U.PName
+  INNER JOIN Department D on D.DName=U.DName
 WHERE D.DName='input'
 
 /* viii)
@@ -102,7 +108,13 @@ WHERE D.DName='input'
  */
 
 SELECT C.Cname, P.Pname
-FROM Section S inner join Has H on S.SeID = H.SeID inner join Course C on C.CID = H.CID inner join Within W on W.CID = C.CID inner join Department D on W.Dname = D.Dname inner join Under U on U.Dname = D.Dname inner join Program P on P.Pname = U.Pname
+FROM Section S
+  INNER JOIN Has H on S.SeID = H.SeID
+  INNER JOIN Course C on C.CID = H.CID
+  INNER JOIN Within W on W.CID = C.CID
+  INNER JOIN Department D on W.Dname = D.Dname
+  INNER JOIN Under U on U.Dname = D.Dname
+  INNER JOIN Program P on P.Pname = U.Pname
 WHERE S.Semester='input'
 GROUP BY P.Pname
 
@@ -116,7 +128,23 @@ GROUP BY P.Pname
 
 /* Not completed yet */
 SELECT distinct C.Cname, S.SeID, CT.StartTime, CT.EndTime, B.Address, I.FirstName, R.Capacity
-FROM Instructor I inner join Teach T on I.IID = T.IID inner join Section S inner join Has H on S.SeID = H.SeID inner join Course C on H.CID = C.CID inner join Within W on C.CID = W.CID inner join Department D on D.Dname = W.Dname inner join DeptCamp DC on DC.Dname = D.Dname inner join Campus Ca on Ca.CampID = DC.CampID inner join BlockCamp BC on BC.CampID = Ca.CampID inner join Block B on B.BName = BC.BName inner join BlockRoom BR on BR.BName = B.BName inner join Room R on R.RoID=BR.RoID inner join ClassTimeslot CT on S.SeID = CT.SeID inner join Under U on D.DName = U.DName inner join Program P on U.PName = P.PName inner join Belong B2 on P.PName=B2.PName 
+FROM Instructor I
+  INNER JOIN Teach T on I.IID = T.IID
+  INNER JOIN Section S
+  INNER JOIN Has H on S.SeID = H.SeID
+  INNER JOIN Course C on H.CID = C.CID
+  INNER JOIN Within W on C.CID = W.CID
+  INNER JOIN Department D on D.Dname = W.Dname
+  INNER JOIN DeptCamp DC on DC.Dname = D.Dname
+  INNER JOIN Campus Ca on Ca.CampID = DC.CampID
+  INNER JOIN BlockCamp BC on BC.CampID = Ca.CampID
+  INNER JOIN Block B on B.BName = BC.BName
+  INNER JOIN BlockRoom BR on BR.BName = B.BName
+  INNER JOIN Room R on R.RoID=BR.RoID
+  INNER JOIN ClassTimeslot CT on S.SeID = CT.SeID
+  INNER JOIN Under U on D.DName = U.DName
+  INNER JOIN Program P on U.PName = P.PName
+  INNER JOIN Belong B2 on P.PName=B2.PName 
 WHERE D.Dname = 'Physics' AND S.Semester = 'Winter'
 
 
@@ -134,40 +162,48 @@ WHERE B.Pname='input' AND B.STID=S.STID AND Semester='input' AND E.SeID=SEC.SeID
  * specific term.
  */
 
-/* Not completed yet */
-SELECT Instructor.Iname
-FROM Instructor, Course, EnrolledIn, Section
-WHERE Section.Semester = ''
+SELECT I.FirstName, I.LastName
+FROM Course C
+  INNER JOIN Has H on H.CID = C.CID
+  INNER JOIN Section S on H.SeID = S.SeID
+  INNER JOIN Teach T on T.SeID = S.SeID
+  INNER JOIN Instructor I on T.IID = I.IID
+WHERE C.CName = 'COMP352' AND S.Semester = 'Summer'
 
 /* xii)
  * Give a list of all supervisors in a given department.
  */
 
-SELECT *
-FROM Supervisor, Department
-WHERE Department.Dname = 'input'
-GROUP BY Supervisors.Name
+SELECT I.FirstName, I.LastName, D.DName
+FROM Instructor I
+  INNER JOIN Work W on I.IID = W.IID
+  INNER JOIN Department D on D.DName = W.DName
+GROUP BY D.DName
 
 /* xiii)
  * Give a list of all the advisors in a given department.
  */
 
-SELECT *
-FROM Belong, Department
-WHERE Department.DName = 'input'
-GROUP BY Advisor.Name
+SELECT B.Advisor
+FROM Belong B
+  INNER JOIN Program P on P.PName = B.PName
+  INNER JOIN Under U on U.PName = P.PName
+  INNER JOIN Department D on U.DName = D.DName
+WHERE D.DName = 'Anthropology'
+GROUP BY B.Advisor
 
 /* xiv)
  * Find the name and IDs of all the graduate students who are supervised by
  * a specific Professor.
  */
 
-SELECT Supervisor.SupervisorID, Supervisor.FirstName, Supervisor.LastName
-FROM Graduate GS
-  INNER JOIN Student S ON GS.SSN = S.SSN
-  INNER JOIN Supervises ON Supervises.GSSN = GS.SSN
-  INNER JOIN Supervisor ON Supervises.SSSN = Supervisor.SSN
-WHERE Supervisor.SSN = 'GIVEN_SSN'
+SELECT ST.FirstName, ST.LastName, ST.STID
+FROM Student ST
+  INNER JOIN Graduate G on ST.STID = G.STID
+  INNER JOIN Supervises SP on G.STID = SP.STID
+  INNER JOIN Supervisor S on SP.SupID = S.SupID
+  INNER JOIN Instructor I on I.SupID = S.SupID
+WHERE I.IID = 'GIVEN_IID'
 
 /* xv)
  * Find the ID, name and assignment mandate of all the graduate students
@@ -213,7 +249,8 @@ HAVING Belong.STID = Student.STID
  */
 
 SELECT *
-FROM Course C INNER JOIN Student S ON C.CID = S.STID
+FROM Course C
+  INNER JOIN Student S ON C.CID = S.STID
 WHERE Course.CID = Student.STID
 
 /* xx)
@@ -229,13 +266,13 @@ VALUES
  */
 
 DELETE FROM Course
- WHERE STID='input'
+WHERE STID='input'
 
 DELETE FROM EnrolledIn 
- WHERE STID = 'input' AND SeID = 'input'
+WHERE STID = 'input' AND SeID = 'input'
 
 DELETE FROM Section
- WHERE STID = 'input' AND SeID = 'input'
+WHERE STID = 'input' AND SeID = 'input'
 
 /* xxii)
   * Give a detailed report for a specific student (This include personal data,
