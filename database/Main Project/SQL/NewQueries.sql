@@ -9,14 +9,14 @@ VALUES(IID, ISSN, Phone, FirstName, SupID, Email, LastName);
 
 UPDATE Instructor 
 SET input = input 
-WHERE IID = input
+WHERE IID = input;
 
 /* Display */
 SELECT *
-FROM Instructor
+FROM Instructor;
 
 DELETE FROM Instructor
-WHERE IID = input
+WHERE IID = input;
 
 /* ii)
  * Create/Delete/Edit/Display a Student. 
@@ -26,7 +26,7 @@ INSERT INTO Student
 VALUES(STID, Credit, FirstName, LastName, GPA, SSN, Phone, Email);
 
 DELETE FROM Student
-WHERE STID = input
+WHERE STID = input;
 
 /* Display */
 SELECT *
@@ -34,7 +34,7 @@ FROM Student;
 
 UPDATE Student 
 SET input = input 
-WHERE STID = input
+WHERE STID = input;
 
 /* iii)
  * Create/Delete/Edit/Display a Teaching Assistant 
@@ -45,16 +45,16 @@ INSERT INTO TeachingAssistant
 VALUES(TAID, TotalHours, AssignmentMarking, LabInstructor, NbCourses, TutorialSession);
 
 DELETE FROM TeachingAssistant
-WHERE TAID = input
+WHERE TAID = input;
 
 /* Display */
 SELECT S.FirstName, S.LastName, S.Email, S.Credit, S.GPA
 FROM Student S INNER JOIN IsTA TA on TA.STID = S.STID
-WHERE S.GPA > 3.2
+WHERE S.GPA > 3.2;
 
 UPDATE TeachingAssistant
 SET input = input 
-WHERE TAID = input
+WHERE TAID = input;
 
 /* iv)
  * Give a list of all campuses.
@@ -62,7 +62,7 @@ WHERE TAID = input
 
 SELECT distinct Name
 FROM Campus
-GROUP BY Name
+GROUP BY Name;
 
 /* v)
  * Give a list of buildings on a given campus. 
@@ -70,7 +70,7 @@ GROUP BY Name
 
 SELECT BName
 FROM BlockCamp
-WHERE CampID = 2
+WHERE CampID = 2;
 
 /* vi)
  * Give details of a specific building (this include address of the building,
@@ -89,7 +89,7 @@ FROM Block B
   INNER JOIN Room R on R.RoID=BR.RoID
   INNER JOIN Contains C on R.RoID=C.RoID
   INNER JOIN Facility F on F.facID=C.facID
-WHERE B.BName = 'input'
+WHERE B.BName = 'input';
 
 
 /* vii)
@@ -101,7 +101,7 @@ SELECT P.Pname, P.TotalCredits
 FROM Program P
   INNER JOIN Under U on P.PName = U.PName
   INNER JOIN Department D on D.DName=U.DName
-WHERE D.DName='input'
+WHERE D.DName='input';
 
 /* viii)
  * Get a list of all courses offered in a given term by a specific program.
@@ -116,7 +116,7 @@ FROM Section S
   INNER JOIN Under U on U.Dname = D.Dname
   INNER JOIN Program P on P.Pname = U.Pname
 WHERE S.Semester='input'
-GROUP BY P.Pname
+GROUP BY P.Pname;
 
 /* ix)
  * Get the details of all the courses offered by a specific department for a
@@ -124,7 +124,6 @@ GROUP BY P.Pname
  * and end time, professor teaching the course, max class capacity and
  * number of enrolled students.
  */
-
 
 /* Not completed yet */
 SELECT distinct C.Cname, S.SeID, CT.StartTime, CT.EndTime, B.Address, I.FirstName, R.Capacity
@@ -145,7 +144,7 @@ FROM Instructor I
   INNER JOIN Under U on D.DName = U.DName
   INNER JOIN Program P on U.PName = P.PName
   INNER JOIN Belong B2 on P.PName=B2.PName 
-WHERE D.Dname = 'Physics' AND S.Semester = 'Winter'
+WHERE D.Dname = 'Physics' AND S.Semester = 'Winter';
 
 
 /* x)
@@ -155,7 +154,7 @@ WHERE D.Dname = 'Physics' AND S.Semester = 'Winter'
 
 SELECT S.STID, S.FirstName, S.LastName
 FROM Student S, Belong B, Section SEC, EnrolledIn E
-WHERE B.Pname='input' AND B.STID=S.STID AND Semester='input' AND E.SeID=SEC.SeID AND E.STID=S.STID
+WHERE B.Pname='input' AND B.STID=S.STID AND Semester='input' AND E.SeID=SEC.SeID AND E.STID=S.STID;
 
 /* xi)
  * Find the name of all the instructors who taught a given course on a
@@ -168,7 +167,7 @@ FROM Course C
   INNER JOIN Section S on H.SeID = S.SeID
   INNER JOIN Teach T on T.SeID = S.SeID
   INNER JOIN Instructor I on T.IID = I.IID
-WHERE C.CName = 'COMP352' AND S.Semester = 'Summer'
+WHERE C.CName = 'COMP352' AND S.Semester = 'Summer';
 
 /* xii)
  * Give a list of all supervisors in a given department.
@@ -178,7 +177,7 @@ SELECT I.FirstName, I.LastName, D.DName
 FROM Instructor I
   INNER JOIN Work W on I.IID = W.IID
   INNER JOIN Department D on D.DName = W.DName
-GROUP BY D.DName
+GROUP BY D.DName;
 
 /* xiii)
  * Give a list of all the advisors in a given department.
@@ -190,7 +189,7 @@ FROM Belong B
   INNER JOIN Under U on U.PName = P.PName
   INNER JOIN Department D on U.DName = D.DName
 WHERE D.DName = 'Anthropology'
-GROUP BY B.Advisor
+GROUP BY B.Advisor;
 
 /* xiv)
  * Find the name and IDs of all the graduate students who are supervised by
@@ -203,7 +202,7 @@ FROM Student ST
   INNER JOIN Supervises SP on G.STID = SP.STID
   INNER JOIN Supervisor S on SP.SupID = S.SupID
   INNER JOIN Instructor I on I.SupID = S.SupID
-WHERE I.IID = 'GIVEN_IID'
+WHERE I.IID = 'GIVEN_IID';
 
 /* xv)
  * Find the ID, name and assignment mandate of all the graduate students
@@ -213,7 +212,7 @@ WHERE I.IID = 'GIVEN_IID'
 
 SELECT S.STID, S.FirstName, S.LastName, T.AssignmentMarking
 FROM Student S, TeachingAssistant T, EnrolledIn E, Section SEC, Has H, Course C, Fund F, Graduate G
-WHERE CName='input' AND Semester='input' AND SEC.SeID=E.SeID AND E.STID=S.STID AND SEC.SeID=H.SeID AND H.CID=C.CID AND T.TAID=F.TAID AND F.STID=G.STID AND G.STID=S.STID
+WHERE CName='input' AND Semester='input' AND SEC.SeID=E.SeID AND E.STID=S.STID AND SEC.SeID=H.SeID AND H.CID=C.CID AND T.TAID=F.TAID AND F.STID=G.STID AND G.STID=S.STID;
 
 /* xvi)
  * Find the name, IDs and total amount of funds received by all the graduate
@@ -222,7 +221,7 @@ WHERE CName='input' AND Semester='input' AND SEC.SeID=E.SeID AND E.STID=S.STID A
 
 SELECT G.STID, S.FirstName, S.LastName, SUM(RF.Amount)
 FROM Graduate G, Student S, ReasearchFunding RF, Fund F
-WHERE RF.RID=F.RID AND F.STID=G.STID AND G.STID=S.STID
+WHERE RF.RID=F.RID AND F.STID=G.STID AND G.STID=S.STID;
 
 /* xvii)
  * For each department, find the total number of courses offered by the
@@ -232,47 +231,63 @@ WHERE RF.RID=F.RID AND F.STID=G.STID AND G.STID=S.STID
 SELECT D.DName, D.Chairman, Count(*)
 FROM Department D, Within W
 WHERE W.DName=D.DName
-GROUP BY W.DName
+GROUP BY W.DName;
 
 /* xviii)
  * For each program, find the total number of students enrolled into the
  * program.
  */
 
-SELECT Student.STID, COUNT(Student.STID)
-FROM Student, Program, Belong
-GROUP BY Program.PName
-HAVING Belong.STID = Student.STID
+SELECT B.PName, COUNT(S.STID)
+FROM Student S, Belong B
+WHERE B.STID = S.STID
+GROUP BY B.PName;
 
 /* xix)
  * Give a list of courses taken by a specific student in a given term.
  */
 
-SELECT *
+SELECT C.CName
 FROM Course C
-  INNER JOIN Student S ON C.CID = S.STID
-WHERE Course.CID = Student.STID
+  INNER JOIN Has H ON C.CID = H.CID
+  INNER JOIN Section Se ON Se.SeID = H.SeID
+  INNER JOIN EnrolledIn E ON Se.SeID = E.SeID
+  INNER JOIN Student S ON S.STID = E.STID
+WHERE S.FirstName = 'James' AND Se.Semester = 'Summer';
 
 /* xx)
  * Register a student in a specific course.
  */
 
-INSERT INTO Section
+/* Gets the section ID we need */
+SELECT Se.SeID
+FROM Course C
+  INNER JOIN Has H ON C.CID = H.CID
+  INNER JOIN Section Se ON Se.SeID = H.SeID
+WHERE C.CName = 'Bio202' AND Se.Semester = 'Winter' AND Se.Year = 2020;
+
+/* Gets the student ID we need */
+SELECT St.STID
+FROM Student St
+WHERE St.SSN = '453';
+
+/* We register a student with a section ID and a student ID */
+INSERT INTO EnrolledIn
 VALUES
-  (SeID, STID, name, whatever);
+  (S.STID, Se.SeID, NULL);
 
 /* xxi)
  * Drop a course from a specific student (look at other dependant tables too)
  */
 
 DELETE FROM Course
-WHERE STID='input'
+WHERE STID='input';
 
 DELETE FROM EnrolledIn 
-WHERE STID = 'input' AND SeID = 'input'
+WHERE STID = 'input' AND SeID = 'input';
 
 DELETE FROM Section
-WHERE STID = 'input' AND SeID = 'input'
+WHERE STID = 'input' AND SeID = 'input';
 
 /* xxii)
   * Give a detailed report for a specific student (This include personal data,
@@ -282,7 +297,7 @@ WHERE STID = 'input' AND SeID = 'input'
 
 /* Not completed yet */
 SELECT SDH.DegreeName, SDH.OverallAvg, SDH.Institution, SDH, DateReceived, C.CName, E.Grade, S.GPA, S.SeID
-FROM StDegHist SDH, Course C, EnrolledIn E, Student, Section S
+FROM StDegHist SDH, Course C, EnrolledIn E, Student, Section S;
 
 
 
