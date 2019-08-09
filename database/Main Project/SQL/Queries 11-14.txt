@@ -1,0 +1,34 @@
+/* xi)
+ * Find the name of all the instructors who taught a given course on a
+ * specific term.
+ */
+
+SELECT I.FirstName, I.LastName
+FROM Course C inner join Has H on H.CID = C.CID inner join Section S on H.SeID = S.SeID inner join Teach T on T.SeID = S.SeID inner join Instructor I on T.IID = I.IID
+WHERE C.CName = 'COMP352' AND S.Semester = 'Summer'
+
+/* xii)
+ * Give a list of all supervisors in a given department.
+ */
+
+SELECT I.FirstName, I.LastName, D.DName
+FROM Instructor I inner join Work W on I.IID = W.IID inner join Department D on D.DName = W.DName
+GROUP BY D.DName
+
+/* xiii)
+ * Give a list of all the advisors in a given department.
+ */
+
+SELECT B.Advisor
+FROM Belong B inner join Program P on P.PName = B.PName inner join Under U on U.PName = P.PName inner join Department D on U.DName = D.DName
+WHERE D.DName = 'Anthropology'
+GROUP BY B.Advisor
+
+/* xiv)
+ * Find the name and IDs of all the graduate students who are supervised by
+ * a specific Professor.
+ */
+
+SELECT ST.FirstName, ST.LastName, ST.STID
+FROM Student ST inner join Graduate G on ST.STID = G.STID inner join Supervises SP on G.STID = SP.STID inner join Supervisor S on SP.SupID = S.SupID inner join Instructor I on I.SupID = S.SupID
+WHERE I.IID = 5
