@@ -52,6 +52,26 @@
                 <small id="lnameHelp" class="form-text text-muted">Enter the tiny integer representing your thesis.</small>
               </div>
               <div class="form-group" style="width: 50%;">
+                <input type="text" class="form-control" name="GradAwardsAwardName" aria-describedby="lnameHelp" placeholder="GradAwardsAwardName">
+                <small id="lnameHelp" class="form-text text-muted">What is your GradAwardsAwardName?</small>
+              </div>
+              <div class="form-group" style="width: 50%;">
+                <input type="text" class="form-control" name="GradAwardsDateReceived" aria-describedby="lnameHelp" placeholder="YYYY-MM-DD">
+                <small id="lnameHelp" class="form-text text-muted">What is your GradAwardsDateReceived?</small>
+              </div>
+              <div class="form-group" style="width: 50%;">
+                <input type="text" class="form-control" name="GradExperienceJobPosition" aria-describedby="lnameHelp" placeholder="GradExperienceJobPosition">
+                <small id="lnameHelp" class="form-text text-muted">What is your GradExperienceJobPosition?</small>
+              </div>
+              <div class="form-group" style="width: 50%;">
+                <input type="text" class="form-control" name="GradExperienceDateStarted" aria-describedby="lnameHelp" placeholder="YYYY-MM-DD">
+                <small id="lnameHelp" class="form-text text-muted">When did you start your GradExperienceJobPosition?</small>
+              </div>
+              <div class="form-group" style="width: 50%;">
+                <input type="text" class="form-control" name="GradExperienceCompany" aria-describedby="lnameHelp" placeholder="GradExperienceCompany">
+                <small id="lnameHelp" class="form-text text-muted">What is your GradExperienceCompany?</small>
+              </div>
+              <div class="form-group" style="width: 50%;">
 				  Query:
               </div>
               <div class="form-group" style="width: 50%;">

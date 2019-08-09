@@ -313,10 +313,14 @@
 	$sqlResult = mysqli_query($mysqlConnection, $sqlSyntax); // Undergraduate or Graduate table
 	
 	// GradAwards table
-	// TODO
+	$GradAwardsAwardName = htmlspecialchars($_POST['GradAwardsAwardName']);
+	$GradAwardsDateReceived = htmlspecialchars($_POST['GradAwardsDateReceived']);
+	$sqlSyntax = "INSERT INTO Student VALUES('" . $GradAwardsAwardName . "','" . $GradAwardsDateReceived . "','" . $STID . "');";
 	
 	// GradExperience table
-	// TODO
+	$GradExperienceJobPosition = htmlspecialchars($_POST['GradExperienceJobPosition']);
+	$GradExperienceDateStarted = htmlspecialchars($_POST['GradExperienceDateStarted']);
+	$GradExperienceCompany = htmlspecialchars($_POST['GradExperienceCompany']);
 	
 	// GradPublications table
 	// TODO

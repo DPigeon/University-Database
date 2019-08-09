@@ -110,7 +110,7 @@
                 <input type="checkbox" class="form-check-input" id="grad" name="query_xxii">
                 <label class="form-check-label" for="grad">Query xvxi</label>
               </div>
-                <input type="submit" class="btn btn-success" value="Register" style="width: 30%;">
+                <input type="submit" class="btn btn-success" value="Search" style="width: 30%;">
               </div>
             </div>
          </form>

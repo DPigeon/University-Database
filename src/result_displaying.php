@@ -2,7 +2,7 @@
 	include_once('sqlConfig.php');
 	
 	$supervisorSSN = htmlspecialchars($_POST['supervisorSSN']);
-	echo "$supervisorSSN<br>";
+	//echo "$supervisorSSN<br>";
 	
 	if( isset($_POST['query_i']) ) {
 		
