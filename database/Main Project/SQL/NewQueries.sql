@@ -8,15 +8,15 @@ INSERT INTO Instructor
 VALUES(IID, ISSN, Phone, FirstName, SupID, Email, LastName);
 
 UPDATE Instructor 
-SET input = input 
-WHERE IID = input;
+  SET input = input 
+  WHERE IID = input;
 
 /* Display */
 SELECT *
 FROM Instructor;
 
 DELETE FROM Instructor
-WHERE IID = input;
+  WHERE IID = input;
 
 /* ii)
  * Create/Delete/Edit/Display a Student. 
@@ -26,15 +26,15 @@ INSERT INTO Student
 VALUES(STID, Credit, FirstName, LastName, GPA, SSN, Phone, Email);
 
 DELETE FROM Student
-WHERE STID = input;
+  WHERE STID = input;
 
 /* Display */
 SELECT *
 FROM Student;
 
 UPDATE Student 
-SET input = input 
-WHERE STID = input;
+  SET input = input 
+  WHERE STID = input;
 
 /* iii)
  * Create/Delete/Edit/Display a Teaching Assistant 
@@ -45,7 +45,7 @@ INSERT INTO TeachingAssistant
 VALUES(TAID, TotalHours, AssignmentMarking, LabInstructor, NbCourses, TutorialSession);
 
 DELETE FROM TeachingAssistant
-WHERE TAID = input;
+  WHERE TAID = input;
 
 /* Display */
 SELECT S.FirstName, S.LastName, S.Email, S.Credit, S.GPA
@@ -53,8 +53,8 @@ FROM Student S INNER JOIN IsTA TA on TA.STID = S.STID
 WHERE S.GPA > 3.2;
 
 UPDATE TeachingAssistant
-SET input = input 
-WHERE TAID = input;
+  SET input = input 
+  WHERE TAID = input;
 
 /* iv)
  * Give a list of all campuses.
@@ -80,10 +80,10 @@ WHERE CampID = 2;
  */
 
 SELECT B.Address, B.NumFloors, B.NumRooms, R.type, CASE
-WHEN R.Type='Labroom' or R.Type='Classroom' THEN R.Capacity
-END as 'Capacity', CASE
-WHEN R.Type='Labroom' or R.Type='Classroom' THEN F.equipment
-END as 'Equipment'
+  WHEN R.Type='Labroom' or R.Type='Classroom' THEN R.Capacity
+  END as 'Capacity', CASE
+  WHEN R.Type='Labroom' or R.Type='Classroom' THEN F.equipment
+  END as 'Equipment'
 FROM Block B
   INNER JOIN BlockRoom BR on B.BName=BR.BName
   INNER JOIN Room R on R.RoID=BR.RoID
@@ -125,7 +125,7 @@ GROUP BY P.Pname;
  * number of enrolled students.
  */
 
-/* Not completed yet */
+/* Not completed yet but almost done*/
 SELECT distinct C.Cname, S.SeID, CT.StartTime, CT.EndTime, B.Address, I.FirstName, R.Capacity
 FROM Instructor I
   INNER JOIN Teach T on I.IID = T.IID
@@ -280,24 +280,36 @@ VALUES
  * Drop a course from a specific student (look at other dependant tables too)
  */
 
-DELETE FROM Course
-WHERE STID='input';
+/* Gets the student ID we need */
+SELECT St.STID
+FROM Student St
+WHERE St.SSN = '453';
 
-DELETE FROM EnrolledIn 
-WHERE STID = 'input' AND SeID = 'input';
+/* Gets the section ID we need */
+SELECT Se.SeID
+FROM Course C
+  INNER JOIN Has H ON C.CID = H.CID
+  INNER JOIN Section Se ON Se.SeID = H.SeID
+WHERE C.CName = 'Bio202' AND Se.Semester = 'Winter' AND Se.Year = 2020;
 
-DELETE FROM Section
-WHERE STID = 'input' AND SeID = 'input';
+/* We drop a course from a specific student */
+DELETE FROM EnrolledIn
+  WHERE STID = 'St.STID' AND SeID = 'Se.SeID'
 
 /* xxii)
-  * Give a detailed report for a specific student (This include personal data,
-  * academic history, courses taken and grades received for each course,
-  * GPA, etc.)
-  */
+ * Give a detailed report for a specific student (This include personal data,
+ * academic history, courses taken and grades received for each course,
+ * GPA, etc.)
+ */
 
-/* Not completed yet */
-SELECT SDH.DegreeName, SDH.OverallAvg, SDH.Institution, SDH, DateReceived, C.CName, E.Grade, S.GPA, S.SeID
-FROM StDegHist SDH, Course C, EnrolledIn E, Student, Section S;
+SELECT SHA.City, SHA.Province, SHA.CivicNumber, SHA.PostalCode, SDH.DegreeName, SDH.OverallAvg, SDH.InstitutionName, SDH.DateReceived, E.Grade, C.CName
+FROM StHomeAddress SHA, StDegHist SDH, Student S
+  INNER JOIN EnrolledIn E ON S.STID = E.STID
+  INNER JOIN Section Se ON Se.SeID = E.SeID
+  INNER JOIN Has H ON Se.SeID = H.SeID
+  INNER JOIN Course C ON C.CID = H.CID
+WHERE S.STID = 7 AND SHA.STID = 7 AND SDH.STID = 7
+GROUP BY S.STID;
 
 
 
