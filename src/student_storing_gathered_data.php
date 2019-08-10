@@ -315,57 +315,107 @@
 	// GradAwards table
 	$GradAwardsAwardName = htmlspecialchars($_POST['GradAwardsAwardName']);
 	$GradAwardsDateReceived = htmlspecialchars($_POST['GradAwardsDateReceived']);
-	$sqlSyntax = "INSERT INTO Student VALUES('" . $GradAwardsAwardName . "','" . $GradAwardsDateReceived . "','" . $STID . "');";
+	$sqlSyntax = "INSERT INTO GradAwards VALUES('" . $GradAwardsAwardName . "','" . $GradAwardsDateReceived . "','" . $STID . "');";
+	$sqlResult = mysqli_query($mysqlConnection, $sqlSyntax);
 	
 	// GradExperience table
 	$GradExperienceJobPosition = htmlspecialchars($_POST['GradExperienceJobPosition']);
 	$GradExperienceDateStarted = htmlspecialchars($_POST['GradExperienceDateStarted']);
 	$GradExperienceCompany = htmlspecialchars($_POST['GradExperienceCompany']);
+	$sqlSyntax = "INSERT INTO GradExperience VALUES('" . $GradExperienceJobPosition . "','" . $STID . "','" . $GradExperienceDateStarted . "','" . $GradExperienceCompany . "');";
+	$sqlResult = mysqli_query($mysqlConnection, $sqlSyntax);
 	
 	// GradPublications table
-	// TODO
+	$GradPublicationsPubName = htmlspecialchars($_POST['GradPublicationsPubName']);
+	$GradPublicationsPubDate = htmlspecialchars($_POST['GradPublicationsPubDate']);
+	$sqlSyntax = "INSERT INTO GradPublications VALUES('" . $GradPublicationsPubName . "','" . $GradPublicationsPubDate . "','" . $STID . "');";
+	$sqlResult = mysqli_query($mysqlConnection, $sqlSyntax);
 	
 	// GradUniversityDegrees table
-	// TODO
+	$GradUniversityDegreesUniDegree = htmlspecialchars($_POST['GradUniversityDegreesUniDegree']);
+	$GradUniversityDegreesUniName = htmlspecialchars($_POST['GradUniversityDegreesUniName']);
+	$GradUniversityDegreesDateReceived = htmlspecialchars($_POST['GradUniversityDegreesDateReceived']);
+	$sqlSyntax = "INSERT INTO GradUniversityDegrees VALUES('" . $GradUniversityDegreesUniDegree . "','" . $GradUniversityDegreesUniName . "','" . $GradUniversityDegreesDateReceived . "','" . $STID . "');";
+	$sqlResult = mysqli_query($mysqlConnection, $sqlSyntax);
 	
 	// StHomeAddress table
-	// TODO
+	$StHomeAddressCity = htmlspecialchars($_POST['StHomeAddressCity']);
+	$StHomeAddressProvince = htmlspecialchars($_POST['StHomeAddressCity']);
+	$StHomeAddressCivicNumber = htmlspecialchars($_POST['StHomeAddressCivicNumber']);
+	$StHomeAddressPostalCode = htmlspecialchars($_POST['StHomeAddressPostalCode']);
+	$sqlSyntax = "INSERT INTO StHomeAddress VALUES('" . $StHomeAddressCity . "','" . $StHomeAddressProvince . "','" . $StHomeAddressCivicNumber . "','" . $StHomeAddressPostalCode . "','" . $STID . "');";
+	$sqlResult = mysqli_query($mysqlConnection, $sqlSyntax);
 	
 	// StDegHist table
-	// TODO
+	$StDegHistDegreeName = htmlspecialchars($_POST['StDegHistDegreeName']);
+	$StDegHistOverallAvg = htmlspecialchars($_POST['StDegHistOverallAvg']);
+	$StDegHistInstitutionName = htmlspecialchars($_POST['StDegHistInstitutionName']);
+	$StDegHistDateReceived = htmlspecialchars($_POST['StDegHistDateReceived']);
+	$sqlSyntax = "INSERT INTO StDegHist VALUES('" . $StDegHistDegreeName . "','" . $StDegHistOverallAvg . "','" . $StDegHistInstitutionName . "','" . $StDegHistDateReceived . "','" . $STID . "');";
+	$sqlResult = mysqli_query($mysqlConnection, $sqlSyntax);
 	
 	// TeachingAssistant table
-	// TODO
+	$TAID = htmlspecialchars($_POST['TAID']); // not same as STID, right?
+	$TeachingAssistantTotalHours = htmlspecialchars($_POST['TeachingAssistantTotalHours']);
+	$TeachingAssistantAssignmentMarking = htmlspecialchars($_POST['TeachingAssistantAssignmentMarking']);
+	$TeachingAssistantLabInstructor = htmlspecialchars($_POST['TeachingAssistantLabInstructor']);
+	$TeachingAssistantNumCourses = htmlspecialchars($_POST['TeachingAssistantNumCourses']);
+	$TeachingAssistantTutorialSession = htmlspecialchars($_POST['TeachingAssistantTutorialSession']);
+	$sqlSyntax = "INSERT INTO TeachingAssistant VALUES('" . $TAID . "','" . $TeachingAssistantTotalHours . "','" . $TeachingAssistantAssignmentMarking . "','" . $TeachingAssistantLabInstructor . "','" . $TeachingAssistantNumCourses . "','" . $TeachingAssistantTutorialSession . "');";
+	$sqlResult = mysqli_query($mysqlConnection, $sqlSyntax);
 	
-	// EnrolledIn table
-	// TODO
+	// EnrolledIn table // Later, make this be able to process more than one course in one shot.
+	$EnrolledInSeID = htmlspecialchars($_POST['EnrolledInSeID']);
+	$EnrolledInGrade = htmlspecialchars($_POST['EnrolledInGrade']);
+	$sqlSyntax = "INSERT INTO EnrolledIn VALUES('" . $STID . "','" . $EnrolledInSeID . "','" . $EnrolledInGrade . "');";
+	$sqlResult = mysqli_query($mysqlConnection, $sqlSyntax);
 	
 	// Contracts table
-	// TODO
+	$ContractsCID = htmlspecialchars($_POST['CID']);
+	$ContractsDate = htmlspecialchars($_POST['ContractsDate']);
+	$ContractsAmount = htmlspecialchars($_POST['ContractsAmount']);
+	$ContractsSeID = htmlspecialchars($_POST['ContractsSeID']); // SeID for working (as a TA) is different than SeID for studying / enrollment (as a student) (from the point of view of the UI)
+	$ContractID = htmlspecialchars($_POST['ContractID']);
+	$sqlSyntax = "INSERT INTO Contracts VALUES('" . $ContractsCID . "','" . $ContractsDate . "','" . $ContractsAmount . "','" . $ContractsSeID . "','" . $TAID . "','" . $ContractID . "');"; // SeID for working (as a TA) is different than SeID for studying / enrollment (as a student) (from the point of view of the UI)
+	$sqlResult = mysqli_query($mysqlConnection, $sqlSyntax);
 	
 	// Fund table
-	// TODO
+	$RID = htmlspecialchars($_POST['RID']);
+	$sqlSyntax = "INSERT INTO Fund VALUES('" . $STID . "','" . $RID . "');";
+	$sqlResult = mysqli_query($mysqlConnection, $sqlSyntax);
 	
 	// Program table
-	// TODO
+	$PName = htmlspecialchars($_POST['PName']);
+	$ProgramTotalCredits = htmlspecialchars($_POST['ProgramTotalCredits']);
+	$sqlSyntax = "INSERT INTO Program VALUES('" . $PName . "','" . $ProgramTotalCredits . "');";
+	$sqlResult = mysqli_query($mysqlConnection, $sqlSyntax);
 	
 	// ResearchFunding table
-	// TODO
+	$ResearchFundingAmount = htmlspecialchars($_POST['ResearchFundingAmount']);
+	$sqlSyntax = "INSERT INTO ResearchFunding VALUES('" . $RID . "','" . $ResearchFundingAmount . "');";
+	$sqlResult = mysqli_query($mysqlConnection, $sqlSyntax);
 	
 	// Belong table
-	// TODO
+	$BelongAdvisor = htmlspecialchars($_POST['BelongAdvisor']);
+	$sqlSyntax = "INSERT INTO Contracts VALUES('" . $STID . "','" . $PName . "','" . $BelongAdvisor . "');";
+	$sqlResult = mysqli_query($mysqlConnection, $sqlSyntax);
 	
 	// AssignHist table
-	// TODO
+	$AssignHistAssignID = htmlspecialchars($_POST['AssignHistAssignID']);
+	$sqlSyntax = "INSERT INTO AssignHist VALUES('" . $AssignHistAssignID . "','" . $TAID . "');";
+	$sqlResult = mysqli_query($mysqlConnection, $sqlSyntax);
 	
 	// AssignTo table
-	// TODO
+	$sqlSyntax = "INSERT INTO AssignTo VALUES('" . $ContractsSeID . "','" . $TAID . "');"; // SeID for working (as a TA) is different than SeID for studying / enrollment (as a student) (from the point of view of the UI)
+	$sqlResult = mysqli_query($mysqlConnection, $sqlSyntax);
 	
 	// InvolvedIn table
-	// TODO
+	$sqlSyntax = "INSERT INTO InvolvedIn VALUES('" . $ContractID . "','" . $TAID . "');";
+	$sqlResult = mysqli_query($mysqlConnection, $sqlSyntax);
 	
 	// IsTA table
-	// TODO
+	$sqlSyntax = "INSERT INTO IsTA VALUES('" . $STID . "','" . $TAID . "');";
+	$sqlResult = mysqli_query($mysqlConnection, $sqlSyntax);
 ?>
 
 <?php include('footer.php'); ?>

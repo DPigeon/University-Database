@@ -103,17 +103,6 @@
 				  Query:
               </div>
               <div class="form-group" style="width: 50%;">
-				<input type="radio" name="gender"
-				<?php if (isset($gender) && $gender=="female") echo "checked";?>
-				value="1">i
-				<input type="radio" name="gender"
-				<?php if (isset($gender) && $gender=="male") echo "checked";?>
-				value="male">Male
-				<input type="radio" name="gender"
-				<?php if (isset($gender) && $gender=="other") echo "checked";?>
-				value="other">Other
-              </div>
-              <div class="form-group" style="width: 50%;">
                 <input type="checkbox" class="form-check-input" id="grad" name="isFTInstructor">
                 <label class="form-check-label" for="grad">FTInstructor</label>
               </div>
@@ -121,6 +110,7 @@
                 <input type="checkbox" class="form-check-input" id="grad" name="isPTInstructor">
                 <label class="form-check-label" for="grad">PTInstructor</label>
               </div>
+              <div>
                 <input type="submit" class="btn btn-success" value="Register" style="width: 30%;">
               </div>
             </div>
