@@ -125,7 +125,6 @@ GROUP BY P.Pname;
  * number of enrolled students.
  */
 
-/* Not completed yet but almost done*/
 SELECT distinct C.Cname,T.IID ,I.FirstName,I.LastName, S.SeID, S.Year, S.Semester, CT.DayWeek, CT.StartTime, CT.EndTime,CT.RoID, R.Capacity, B.Address
 FROM Instructor I
   INNER JOIN Teach T on I.IID = T.IID
