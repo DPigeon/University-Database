@@ -177,6 +177,8 @@ SELECT I.FirstName, I.LastName, D.DName
 FROM Instructor I
   INNER JOIN Work W on I.IID = W.IID
   INNER JOIN Department D on D.DName = W.DName
+  INNER JOIN Supervisor S on S.SupID=I.IID
+  Where D.DName='Computer Science'
 GROUP BY D.DName;
 
 /* xiii)
@@ -202,7 +204,7 @@ FROM Student ST
   INNER JOIN Supervises SP on G.STID = SP.STID
   INNER JOIN Supervisor S on SP.SupID = S.SupID
   INNER JOIN Instructor I on I.SupID = S.SupID
-WHERE I.IID = 'GIVEN_IID';
+WHERE I.IID = 1;
 
 /* xv)
  * Find the ID, name and assignment mandate of all the graduate students
