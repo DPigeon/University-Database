@@ -137,7 +137,7 @@ FROM Instructor I
   INNER JOIN ClassTimeslot CT on S.SeID = CT.SeID
   INNER JOIN Room R on R.RoID=CT.RoID
 INNER JOIN BlockRoom on R.RoID = BlockRoom.RoID
-InNER JOIN Block B on BlockRoom.BName = B.BName
+INNER JOIN Block B on BlockRoom.BName = B.BName
 WHERE D.Dname = 'Physics' AND S.Semester = 'Winter';
 
 
