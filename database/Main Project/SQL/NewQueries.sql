@@ -203,7 +203,7 @@ FROM Student ST
   INNER JOIN Graduate G on ST.STID = G.STID
   INNER JOIN Supervises SP on G.STID = SP.STID
   INNER JOIN Supervisor S on SP.SupID = S.SupID
-  INNER JOIN Instructor I on I.SupID = S.SupID
+  INNER JOIN Instructor I on I.IID= S.SupID
 WHERE I.IID = 1;
 
 /* xv)
