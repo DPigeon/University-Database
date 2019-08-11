@@ -154,7 +154,7 @@ WHERE D.Dname = 'Physics' AND S.Semester = 'Winter';
 
 SELECT S.STID, S.FirstName, S.LastName
 FROM Student S, Belong B, Section SEC, EnrolledIn E
-WHERE B.Pname='input' AND B.STID=S.STID AND Semester='input' AND E.SeID=SEC.SeID AND E.STID=S.STID;
+WHERE B.Pname='Arts' AND B.STID=S.STID AND Semester='Summer' AND E.SeID=SEC.SeID AND E.STID=S.STID;
 
 /* xi)
  * Find the name of all the instructors who taught a given course on a
