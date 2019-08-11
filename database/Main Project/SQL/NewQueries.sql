@@ -210,9 +210,8 @@ WHERE I.IID = 'GIVEN_IID';
  * term.
  */
 
-SELECT S.STID, S.FirstName, S.LastName, T.AssignmentMarking
-FROM Student S, TeachingAssistant T, EnrolledIn E, Section SEC, Has H, Course C, Fund F, Graduate G
-WHERE CName='input' AND Semester='input' AND SEC.SeID=E.SeID AND E.STID=S.STID AND SEC.SeID=H.SeID AND H.CID=C.CID AND T.TAID=F.TAID AND F.STID=G.STID AND G.STID=S.STID;
+select Student.STID, Student.FirstName, Student.LastName, TeachingAssistant.AssignmentMarking
+from Student inner join Graduate on Student.STID = Graduate.STID inner join IsTA on IsTA.STID=Graduate.STID inner join TeachingAssistant on TeachingAssistant.TAID=IsTA.TAID inner join AssignTo on AssignTo.TAID=TeachingAssistant.TAID inner join Section S on AssignTo.SeID = S.SeID inner join Has H on S.SeID = H.SeID inner join Course C on H.CID = C.CID where C.CID='input' and Semester='input';
 
 /* xvi)
  * Find the name, IDs and total amount of funds received by all the graduate
@@ -224,9 +223,6 @@ FROM Graduate G , Student S, Fund F, ResearchFunding RF
 WHERE S.STID=G.STID AND G.STID = F.STID AND F.RID = RF.RID
 GROUP BY RF.RID;
 
-SELECT G.STID, S.FirstName, S.LastName, SUM(RF.Amount)
-FROM Graduate G, Student S, ReasearchFunding RF, Fund F
-WHERE RF.RID=F.RID AND F.STID=G.STID AND G.STID=S.STID;
 
 /* xvii)
  * For each department, find the total number of courses offered by the
