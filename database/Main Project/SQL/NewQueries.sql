@@ -219,6 +219,11 @@ WHERE CName='input' AND Semester='input' AND SEC.SeID=E.SeID AND E.STID=S.STID A
  * students who received research funds in a given term.
  */
 
+SELECT S.STID, S.FirstName, S.LastName, SUM(RF.Amount)
+FROM Graduate G , Student S, Fund F, ResearchFunding RF
+WHERE S.STID=G.STID AND G.STID = F.STID AND F.RID = RF.RID
+GROUP BY RF.RID;
+
 SELECT G.STID, S.FirstName, S.LastName, SUM(RF.Amount)
 FROM Graduate G, Student S, ReasearchFunding RF, Fund F
 WHERE RF.RID=F.RID AND F.STID=G.STID AND G.STID=S.STID;
@@ -230,7 +235,7 @@ WHERE RF.RID=F.RID AND F.STID=G.STID AND G.STID=S.STID;
 
 SELECT D.DName, D.Chairman, Count(*)
 FROM Department D, Within W
-WHERE W.DName=D.DName
+WHERE  D.DName=W.DName
 GROUP BY W.DName;
 
 /* xviii)
@@ -238,10 +243,15 @@ GROUP BY W.DName;
  * program.
  */
 
-SELECT B.PName, COUNT(S.STID)
+SELECT P.PName, Count(*)
+FROM Program P, Under U
+WHERE P.PName=U.PName
+GROUP BY U.Dname;
+
+/*SELECT B.PName, COUNT(S.STID)
 FROM Student S, Belong B
 WHERE B.STID = S.STID
-GROUP BY B.PName;
+GROUP BY B.PName;*/
 
 /* xix)
  * Give a list of courses taken by a specific student in a given term.
