@@ -70,7 +70,7 @@ GROUP BY Name;
 
 SELECT BName
 FROM BlockCamp
-WHERE CampID = 2;
+WHERE CampID = 7;
 
 /* vi)
  * Give details of a specific building (this include address of the building,
@@ -89,7 +89,7 @@ FROM Block B
   INNER JOIN Room R on R.RoID=BR.RoID
   INNER JOIN Contains C on R.RoID=C.RoID
   INNER JOIN Facility F on F.facID=C.facID
-WHERE B.BName = 'input';
+WHERE B.BName = 'B Block';
 
 
 /* vii)
@@ -101,7 +101,7 @@ SELECT P.Pname, P.TotalCredits
 FROM Program P
   INNER JOIN Under U on P.PName = U.PName
   INNER JOIN Department D on D.DName=U.DName
-WHERE D.DName='input';
+WHERE D.DName='Engineering';
 
 /* viii)
  * Get a list of all courses offered in a given term by a specific program.
@@ -115,7 +115,7 @@ FROM Section S
   INNER JOIN Department D on W.Dname = D.Dname
   INNER JOIN Under U on U.Dname = D.Dname
   INNER JOIN Program P on P.Pname = U.Pname
-WHERE S.Semester='input'
+WHERE S.Semester='Fall' AND P.Pname = 'Canadian History'
 GROUP BY P.Pname;
 
 /* ix)
@@ -211,7 +211,15 @@ WHERE I.IID = 'GIVEN_IID';
  */
 
 select Student.STID, Student.FirstName, Student.LastName, TeachingAssistant.AssignmentMarking
-from Student inner join Graduate on Student.STID = Graduate.STID inner join IsTA on IsTA.STID=Graduate.STID inner join TeachingAssistant on TeachingAssistant.TAID=IsTA.TAID inner join AssignTo on AssignTo.TAID=TeachingAssistant.TAID inner join Section S on AssignTo.SeID = S.SeID inner join Has H on S.SeID = H.SeID inner join Course C on H.CID = C.CID where C.CID='input' and Semester='input';
+from Student
+  INNER JOIN Graduate on Student.STID = Graduate.STID
+  INNER JOIN IsTA on IsTA.STID=Graduate.STID
+  INNER JOIN TeachingAssistant on TeachingAssistant.TAID=IsTA.TAID
+  INNER JOIN AssignTo on AssignTo.TAID=TeachingAssistant.TAID
+  INNER JOIN Section S on AssignTo.SeID = S.SeID
+  INNER JOIN Has H on S.SeID = H.SeID
+  INNER JOIN Course C on H.CID = C.CID
+WHERE C.CID='input' and Semester='input';
 
 /* xvi)
  * Find the name, IDs and total amount of funds received by all the graduate
