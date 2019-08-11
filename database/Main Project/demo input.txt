@@ -1,1 +1,28 @@
 https://docs.google.com/document/d/1sl226m8aJi-vTU0GYiv8GZRdDYNZ9N3b-ZM3PYw3Flc/edit?usp=sharing
+
+
+
+
+I.
+II.
+III.
+IV.
+V.	CampID = 7;
+VI.	B.BName = ‘B.Block’;
+VII.	D.DName = ‘Engineering’;
+VIII.	S.SEMESTER = ‘Fall’ AND P.Pname = ‘Canadian History’;
+IX.	
+X.	B.Pname = ‘Arts’ AND Semester = ‘Summer’;
+XI.	C.Cname = ‘COMP352’ AND S.Semester = ‘Summer’;
+XII.	D.dname = ‘Computer Science’;
+XIII.	D.dname = ‘Anthropology’;
+XIV.	I.IID = 1;
+XV.	C.CID = 1 AND Semester = ‘Fall’;
+XVI.	
+XVII.	
+XVIII.	
+XIX.	
+XX.	
+XXI.	
+XXII.	
+
