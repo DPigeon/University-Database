@@ -221,7 +221,7 @@ from Student
   INNER JOIN Section S on AssignTo.SeID = S.SeID
   INNER JOIN Has H on S.SeID = H.SeID
   INNER JOIN Course C on H.CID = C.CID
-WHERE C.CID='input' and Semester='input';
+WHERE C.CID='1' and Semester='Summer';
 
 /* xvi)
  * Find the name, IDs and total amount of funds received by all the graduate
