@@ -90,7 +90,7 @@
 	}
 	
 	// <testCase>
-	$sqlSyntax = "Select * from TrapeziEna";
+	$sqlSyntax = "Select * from Student";
 	$sqlResult = mysqli_query($mysqlConnection, $sqlSyntax);
 	printSqlResult($sqlResult);
 	// </testCase>

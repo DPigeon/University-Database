@@ -250,22 +250,34 @@
 	$sqlResult = mysqli_query($mysqlConnection, $sqlSyntax);
 	
 	// SalaryHist table
-	// TODO
+	$SalaryHistSalary = htmlspecialchars($_POST['SalaryHistSalary']);
+	$sqlSyntax = "INSERT INTO SalaryHist VALUES('" . $SalaryHistSalary . "','" . $IID . "');";
+	$sqlResult = mysqli_query($mysqlConnection, $sqlSyntax);
 	
 	// Supervises table
-	// TODO
+	$SupervisesSTID = htmlspecialchars($_POST['SupervisesSTID']);
+	$sqlSyntax = "INSERT INTO Supervises VALUES('" . $SupID . "','" . $SupervisesSTID . "');";
+	$sqlResult = mysqli_query($mysqlConnection, $sqlSyntax);
 	
 	// Teach table
-	// TODO
+	$TeachSeID = htmlspecialchars($_POST['TeachSeID']);
+	$sqlSyntax = "INSERT INTO Teach VALUES('" . $TeachSeID . "','" . $IID . "');";
+	$sqlResult = mysqli_query($mysqlConnection, $sqlSyntax);
 	
 	// Supervisor (not Supervises) table
-	// TODO
+	$sqlSyntax = "INSERT INTO Supervisor VALUES('" . $SupID . "');";
+	$sqlResult = mysqli_query($mysqlConnection, $sqlSyntax);
 	
 	// HasContract table
-	// TODO
+	$HasContractContractID = htmlspecialchars($_POST['HasContractContractID']);
+	$sqlSyntax = "INSERT INTO HasContract VALUES('" . $IID . "','" . $HasContractContractID . "');";
+	$sqlResult = mysqli_query($mysqlConnection, $sqlSyntax);
 	
 	// Work table
-	// TODO
+	$DName = htmlspecialchars($_POST['DName']);
+	$sqlSyntax = "INSERT INTO Work VALUES('" . $DName . "','" . $IID . "');";
+	$sqlResult = mysqli_query($mysqlConnection, $sqlSyntax);
+	
 ?>
 
 <?php include('footer.php'); ?>

@@ -100,6 +100,26 @@
                 <small id="lnameHelp" class="form-text text-muted">When did you receive your university degree?</small>
               </div>
               <div class="form-group" style="width: 50%;">
+                <input type="text" class="form-control" name="SalaryHistSalary" aria-describedby="lnameHelp" placeholder="$0.00">
+                <small id="lnameHelp" class="form-text text-muted">What is your SalaryHistSalary?</small>
+              </div>
+              <div class="form-group" style="width: 50%;">
+                <input type="text" class="form-control" name="SupervisesSTID" aria-describedby="lnameHelp" placeholder="Student's ID">
+                <small id="lnameHelp" class="form-text text-muted">What is the student ID of the student you are supervising?</small>
+              </div>
+              <div class="form-group" style="width: 50%;">
+                <input type="text" class="form-control" name="TeachSeID" aria-describedby="lnameHelp" placeholder="Section ID of course taught">
+                <small id="lnameHelp" class="form-text text-muted">What is the section ID of the course you are teaching?</small>
+              </div>
+              <div class="form-group" style="width: 50%;">
+                <input type="text" class="form-control" name="HasContractContractID" aria-describedby="lnameHelp" placeholder="ID number of your contract">
+                <small id="lnameHelp" class="form-text text-muted">What is the ID number of your contract?</small>
+              </div>
+              <div class="form-group" style="width: 50%;">
+                <input type="text" class="form-control" name="DName" aria-describedby="lnameHelp" placeholder="Department name of department worked for">
+                <small id="lnameHelp" class="form-text text-muted">What is the name of the department you work for?</small>
+              </div>
+              <div class="form-group" style="width: 50%;">
 				  Query:
               </div>
               <div class="form-group" style="width: 50%;">
