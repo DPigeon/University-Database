@@ -330,6 +330,10 @@ Find the prereq of a course
 Select C.Cname 
 From Course C
 Where CID IN (Select P.CID1 FROM Course C, PrereqFollow P Where Cname='COMP400' AND C.CID=P.CID2);
+Find the FOLLOW of a course
+Select C.Cname 
+From Course C
+Where CID IN (Select P.CID2 FROM Course C, PrereqFollow P Where Cname='COMP352' AND C.CID=P.CID1);
 
 
 
