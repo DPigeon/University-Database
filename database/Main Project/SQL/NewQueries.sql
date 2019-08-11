@@ -326,7 +326,10 @@ FROM StHomeAddress SHA, StDegHist SDH, Student S
   INNER JOIN Course C ON C.CID = H.CID
 WHERE S.STID = 7 AND SHA.STID = 7 AND SDH.STID = 7
 GROUP BY S.STID;
-
+Find the prereq of a course
+Select C.Cname 
+From Course C
+Where CID IN (Select P.CID1 FROM Course C, PrereqFollow P Where Cname='COMP400' AND C.CID=P.CID2);
 
 
 
