@@ -231,7 +231,7 @@ WHERE C.CID='1' and Semester='Summer';
 SELECT S.STID, S.FirstName, S.LastName, SUM(RF.Amount)
 FROM Graduate G , Student S, Fund F, ResearchFunding RF
 WHERE S.STID=G.STID AND G.STID = F.STID AND F.RID = RF.RID
-GROUP BY RF.RID;
+GROUP BY F.STID;
 
 
 /* xvii)
