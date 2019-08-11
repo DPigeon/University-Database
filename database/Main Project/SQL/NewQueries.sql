@@ -126,7 +126,7 @@ GROUP BY P.Pname;
  */
 
 /* Not completed yet but almost done*/
-SELECT distinct C.Cname,T.IID ,I.FirstName,I.LastName, S.SeID, S.Year, S.Semester, CT.DayWeek, CT.StartTime, CT.EndTime,CT.RoID, R.Capacity, B.Address
+SELECT distinct C.Cname, T.IID , I.FirstName, I.LastName, S.SeID, S.Year, S.Semester, CT.DayWeek, CT.StartTime, CT.EndTime, CT.RoID, R.Capacity, B.Address
 FROM Instructor I
   INNER JOIN Teach T on I.IID = T.IID
   INNER JOIN Section S on T.SeID = S.SeID
@@ -137,8 +137,8 @@ FROM Instructor I
   INNER JOIN DeptCamp DC on DC.Dname = D.Dname
   INNER JOIN ClassTimeslot CT on S.SeID = CT.SeID
   INNER JOIN Room R on R.RoID=CT.RoID
-INNER JOIN BlockRoom on R.RoID = BlockRoom.RoID
-InNER JOIN Block B on BlockRoom.BName = B.BName
+  INNER JOIN BlockRoom on R.RoID = BlockRoom.RoID
+  InNER JOIN Block B on BlockRoom.BName = B.BName
 WHERE D.Dname = 'Physics' AND S.Semester = 'Winter';
 
 
@@ -173,14 +173,14 @@ FROM Instructor I
   INNER JOIN Work W on I.IID = W.IID
   INNER JOIN Department D on D.DName = W.DName
   INNER JOIN Supervisor S on S.SupID=I.IID
-  Where D.DName='Computer Science'
-GROUP BY D.DName;
+Where D.DName='Computer Science'
+GROUP BY I.FirstName;
 
 /* xiii)
  * Give a list of all the advisors in a given department.
  */
 
-SELECT B.Advisor
+SELECT B.Advisor, D.DName
 FROM Belong B
   INNER JOIN Program P on P.PName = B.PName
   INNER JOIN Under U on U.PName = P.PName
@@ -275,7 +275,7 @@ SELECT Se.SeID
 FROM Course C
   INNER JOIN Has H ON C.CID = H.CID
   INNER JOIN Section Se ON Se.SeID = H.SeID
-WHERE C.CName = 'Bio202' AND Se.Semester = 'Winter' AND Se.Year = 2020;
+WHERE C.CName = 'COMP249' AND Se.Semester = 'Winter' AND Se.Year = 2020;
 
 /* Gets the student ID we need */
 SELECT St.STID
@@ -322,13 +322,17 @@ FROM StHomeAddress SHA, StDegHist SDH, Student S
 WHERE S.STID = 7 AND SHA.STID = 7 AND SDH.STID = 7
 GROUP BY S.STID;
 Find the prereq of a course
-Select C.Cname 
+Select C.Cname
 From Course C
-Where CID IN (Select P.CID1 FROM Course C, PrereqFollow P Where Cname='COMP400' AND C.CID=P.CID2);
+Where CID IN (Select P.CID1
+FROM Course C, PrereqFollow P
+Where Cname='COMP400' AND C.CID=P.CID2);
 Find the FOLLOW of a course
-Select C.Cname 
+Select C.Cname
 From Course C
-Where CID IN (Select P.CID2 FROM Course C, PrereqFollow P Where Cname='COMP352' AND C.CID=P.CID1);
+Where CID IN (Select P.CID2
+FROM Course C, PrereqFollow P
+Where Cname='COMP352' AND C.CID=P.CID1);
 
 
 
