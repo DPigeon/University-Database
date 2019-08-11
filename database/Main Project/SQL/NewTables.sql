@@ -99,16 +99,18 @@ create table Room
 	RoID int auto_increment
 		primary key,
 	ClassNum int null,
-	Capacity int null
+	Capacity int null,
+	Type varchar(30) default 'classroom' not null
 );
 
 create table BlockRoom
 (
-	RoID int not null,
+	RoID int not null
+		primary key,
 	BName varchar(30) not null,
-	primary key (BName, RoID),
-	constraint BlockRoom_Block_Name_fk
-		foreign key (BName) references Block (BName),
+	constraint BlockRoom_Block_BName_fk
+		foreign key (BName) references Block (BName)
+			on update cascade,
 	constraint BlockRoom_Room_RoID_fk
 		foreign key (RoID) references Room (RoID)
 );
@@ -117,6 +119,7 @@ create table Classroom
 (
 	ROID int default 0 not null
 		primary key,
+	name varchar(30) default 'classroom' null,
 	constraint Classroom_Room_RoID_fk
 		foreign key (ROID) references Room (RoID)
 			on update cascade
@@ -126,6 +129,7 @@ create table ConferenceRoom
 (
 	RoID int not null
 		primary key,
+	ClassLab tinyint(1) default 0 null,
 	constraint ConferenceRoom_ibfk_1
 		foreign key (RoID) references Room (RoID)
 			on update cascade on delete cascade
@@ -148,6 +152,7 @@ create table LabRoom
 (
 	RoID int not null
 		primary key,
+	ClassLab tinyint(1) default 0 null,
 	constraint LabRoom_Room_RoID_fk
 		foreign key (RoID) references Room (RoID)
 			on update cascade
@@ -157,6 +162,7 @@ create table Office
 (
 	RoID int not null
 		primary key,
+	ClassLab tinyint(1) default 0 null,
 	constraint Office_ibfk_1
 		foreign key (RoID) references Room (RoID)
 			on update cascade on delete cascade
@@ -166,76 +172,6 @@ create table SalaryHist
 (
 	IID int null,
 	Salary float null
-);
-
-create table Section
-(
-	SeID int not null
-		primary key,
-	Semester char(30) null,
-	Year int null
-);
-
-create table ClassTimeslot
-(
-	StartTime time default '00:00:00' not null,
-	DayWeek varchar(30) default '' not null,
-	SeID int default 0 not null,
-	EndTime time null,
-	RoID int not null,
-	primary key (StartTime, DayWeek, SeID),
-	constraint ClassTimeslot_ibfk_2
-		foreign key (SeID) references Section (SeID)
-);
-
-create index SeID
-	on ClassTimeslot (SeID);
-
-create table Contracts
-(
-	CID int not null,
-	Date date null,
-	Amount float null,
-	SeID int null,
-	TAID int not null,
-	ContractID int not null
-		primary key,
-	constraint Contracts_Course_CID_fk
-		foreign key (CID) references Course (CID)
-			on update cascade,
-	constraint Contracts_Section_SeID_fk
-		foreign key (SeID) references Section (SeID)
-			on update cascade
-);
-
-create index Contracts_TeachingAssistant_TAID_fk
-	on Contracts (TAID);
-
-create table Has
-(
-	CID int null,
-	SeID int default 0 not null
-		primary key,
-	constraint Has_ibfk_1
-		foreign key (CID) references Course (CID),
-	constraint Has_ibfk_2
-		foreign key (SeID) references Section (SeID)
-);
-
-create index CID
-	on Has (CID);
-
-create table HasContract
-(
-	IID int default 0 not null,
-	ContractID int default 0 not null,
-	primary key (IID, ContractID),
-	constraint HasContract_Contracts_ContractID_fk
-		foreign key (ContractID) references Contracts (ContractID)
-			on update cascade,
-	constraint HasContract_PTInstructor_IID_fk
-		foreign key (IID) references PTInstructor (IID)
-			on update cascade
 );
 
 create table Student
@@ -248,7 +184,9 @@ create table Student
 	GPA float null,
 	SSN int not null,
 	Phone varchar(30) null,
-	Email varchar(30) null
+	Email varchar(30) null,
+	constraint Student_SSN_uindex
+		unique (SSN)
 );
 
 create table Belong
@@ -266,22 +204,6 @@ create table Belong
 
 create index PName
 	on Belong (PName);
-
-create table EnrolledIn
-(
-	STID int default 0 not null,
-	SeID int default 0 not null,
-	Grade char(2) null,
-	primary key (STID, SeID),
-	constraint EnrolledIn_Student_STID_fk
-		foreign key (STID) references Student (STID)
-			on update cascade,
-	constraint EnrolledIn_ibfk_1
-		foreign key (SeID) references Section (SeID)
-);
-
-create index SeID
-	on EnrolledIn (SeID);
 
 create table Graduate
 (
@@ -472,6 +394,94 @@ create table InsUniversityDegrees
 			on update cascade
 );
 
+create table Section
+(
+	SeID int not null
+		primary key,
+	Semester char(30) default '' not null,
+	Year int default 0 not null,
+	instructorID int not null,
+	constraint Section_Instructor_IID_fk
+		foreign key (instructorID) references Instructor (IID)
+			on update cascade
+);
+
+create table ClassTimeslot
+(
+	StartTime time default '00:00:00' not null,
+	DayWeek varchar(30) default '' not null,
+	SeID int default 0 not null,
+	EndTime time null,
+	RoID int not null,
+	instructorID int null,
+	semester int null,
+	primary key (StartTime, DayWeek, SeID),
+	constraint ClassTimeslot_Room_RoID_fk
+		foreign key (RoID) references Room (RoID)
+			on update cascade,
+	constraint ClassTimeslot_Section_SeID_fk
+		foreign key (SeID) references Section (SeID)
+);
+
+create table Contracts
+(
+	CID int not null,
+	Date date null,
+	Amount float null,
+	SeID int null,
+	TAID int not null,
+	ContractID int not null
+		primary key,
+	constraint Contracts_Course_CID_fk
+		foreign key (CID) references Course (CID)
+			on update cascade,
+	constraint Contracts_Section_SeID_fk
+		foreign key (SeID) references Section (SeID)
+);
+
+create index Contracts_TeachingAssistant_TAID_fk
+	on Contracts (TAID);
+
+create table EnrolledIn
+(
+	STID int default 0 not null,
+	SeID int default 0 not null,
+	Grade char(2) null,
+	primary key (STID, SeID),
+	constraint EnrolledIn_Section_SeID_fk
+		foreign key (SeID) references Section (SeID),
+	constraint EnrolledIn_Student_STID_fk
+		foreign key (STID) references Student (STID)
+			on update cascade
+);
+
+create table Has
+(
+	CID int null,
+	SeID int default 0 not null
+		primary key,
+	constraint Has_Section_SeID_fk
+		foreign key (SeID) references Section (SeID),
+	constraint Has_ibfk_1
+		foreign key (CID) references Course (CID)
+);
+
+create index CID
+	on Has (CID);
+
+create table HasContract
+(
+	IID int default 0 not null,
+	ContractID int default 0 not null,
+	primary key (IID, ContractID),
+	constraint HasContract_Contracts_ContractID_fk
+		foreign key (ContractID) references Contracts (ContractID)
+			on update cascade,
+	constraint HasContract_PTInstructor_IID_fk
+		foreign key (IID) references PTInstructor (IID)
+			on update cascade
+);
+
 create table Supervises
 (
 	SupID int not null,
@@ -491,11 +501,11 @@ create table Teach
 	primary key (IID, SeID),
 	constraint Teach_Instructor_IID_fk
 		foreign key (IID) references Instructor (IID)
-			on update cascade,
-	constraint Teach_Section_SeID_fk
-		foreign key (SeID) references Section (SeID)
 			on update cascade
 );
+
+create index Teach_Section_SeID_fk
+	on Teach (SeID);
 
 create table TeachingAssistant
 (
@@ -523,7 +533,7 @@ create table AssignTo
 	SeID int default 0 not null,
 	TAID int default 0 not null,
 	primary key (SeID, TAID),
-	constraint AssignTo_ibfk_1
+	constraint AssignTo_Section_SeID_fk
 		foreign key (SeID) references Section (SeID),
 	constraint AssignTo_ibfk_2
 		foreign key (TAID) references TeachingAssistant (TAID)
