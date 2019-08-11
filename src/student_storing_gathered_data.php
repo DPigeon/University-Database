@@ -289,6 +289,7 @@
 	// Store the student's data (that was obtained from the form on student_data_gathering.php) (into the MySQL database).
 	
 	// Store the data required for the Student MySQL table.
+	
 	// Student table
 	$STID = htmlspecialchars($_POST['STID']);
 	$Credit = htmlspecialchars($_POST['Credit']);
@@ -371,7 +372,7 @@
 	$sqlResult = mysqli_query($mysqlConnection, $sqlSyntax);
 	
 	// Contracts table
-	$ContractsCID = htmlspecialchars($_POST['CID']);
+	$ContractsCID = htmlspecialchars($_POST['ContractsCID']);
 	$ContractsDate = htmlspecialchars($_POST['ContractsDate']);
 	$ContractsAmount = htmlspecialchars($_POST['ContractsAmount']);
 	$ContractsSeID = htmlspecialchars($_POST['ContractsSeID']); // SeID for working (as a TA) is different than SeID for studying / enrollment (as a student) (from the point of view of the UI)

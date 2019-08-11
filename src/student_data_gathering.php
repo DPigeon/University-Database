@@ -199,46 +199,6 @@
                 <input type="text" class="form-control" name="AssignHistAssignID" aria-describedby="lnameHelp" placeholder="AssignHistAssignID">
                 <small id="lnameHelp" class="form-text text-muted">What is your AssignHistAssignID?</small>
               </div>
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              <div class="form-group" style="width: 50%;">
-				  Query:
-              </div>
               <div class="form-group" style="width: 50%;">
                 <input type="checkbox" class="form-check-input" id="grad" name="isGraduate">
                 <label class="form-check-label" for="grad">Graduate</label>

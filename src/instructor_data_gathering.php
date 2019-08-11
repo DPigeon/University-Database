@@ -120,9 +120,6 @@
                 <small id="lnameHelp" class="form-text text-muted">What is the name of the department you work for?</small>
               </div>
               <div class="form-group" style="width: 50%;">
-				  Query:
-              </div>
-              <div class="form-group" style="width: 50%;">
                 <input type="checkbox" class="form-check-input" id="grad" name="isFTInstructor">
                 <label class="form-check-label" for="grad">FTInstructor</label>
               </div>

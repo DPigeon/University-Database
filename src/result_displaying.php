@@ -90,6 +90,7 @@
 	}
 	
 	// <testCase>
+	echo "Test case (REMOVE LATER):<br>";
 	$sqlSyntax = "Select * from Student";
 	$sqlResult = mysqli_query($mysqlConnection, $sqlSyntax);
 	printSqlResult($sqlResult);

@@ -304,73 +304,134 @@
 	// Store the data required for the MySQL table(s) related to the course.
 	
 	// Course table
-	// TODO
+	$CourseCID = htmlspecialchars($_POST['CourseCID']);
+	$CourseCName = htmlspecialchars($_POST['CourseCName']);
+	$sqlSyntax = "INSERT INTO Course VALUES('" . $CourseCID . "','" . $CourseCName . "');";
+	$sqlResult = mysqli_query($mysqlConnection, $sqlSyntax);
 	
 	// Contracts table
-	// TODO
+	$ContractsDate = htmlspecialchars($_POST['ContractsDate']);
+	$ContractsAmount = htmlspecialchars($_POST['ContractsAmount']);
+	$ContractsSeID = htmlspecialchars($_POST['ContractsSeID']);
+	$ContractsTAID = htmlspecialchars($_POST['ContractsTAID']);
+	$ContractID = htmlspecialchars($_POST['ContractID']);
+	$sqlSyntax = "INSERT INTO Contracts VALUES('" . $CourseCID . "','" . $ContractsDate . "','" . $ContractsAmount . "','" . $ContractsSeID . "','" . $TAID . "','" . $ContractID . "');";
+	$sqlResult = mysqli_query($mysqlConnection, $sqlSyntax);
 	
 	// ClassTimeslot table
-	// TODO
+	$ClassTimeslotStartTime = htmlspecialchars($_POST['ClassTimeslotStartTime']);
+	$ClassTimeslotDayWeek = htmlspecialchars($_POST['ClassTimeslotDayWeek']);
+	$ClassTimeslotSeID = htmlspecialchars($_POST['ClassTimeslotSeID']);
+	$ClassTimeslotEndTime = htmlspecialchars($_POST['ClassTimeslotEndTime']);
+	$ClassTimeslotRoID = htmlspecialchars($_POST['ClassTimeslotRoID']);
+	$sqlSyntax = "INSERT INTO ClassTimeslot VALUES('" . $ClassTimeslotStartTime . "','" . $ClassTimeslotDayWeek . "','" . $ClassTimeslotSeID . "','" . $ClassTimeslotEndTime . "','" . $ClassTimeslotRoID . "');";
+	$sqlResult = mysqli_query($mysqlConnection, $sqlSyntax);
 	
 	// Facility table
-	// TODO
+	$FacilityEquipment = htmlspecialchars($_POST['FacilityEquipment']);
+	$sqlSyntax = "INSERT INTO Facility VALUES('" . $FacilityEquipment . "','" . $ClassTimeslotRoID . "');";
+	$sqlResult = mysqli_query($mysqlConnection, $sqlSyntax);
 	
 	// Has table
-	// TODO
+	$sqlSyntax = "INSERT INTO ClassTimeslot VALUES('" . $CourseCID . "','" . $ContractsSeID . "');";
+	$sqlResult = mysqli_query($mysqlConnection, $sqlSyntax);
 	
 	// Section table
-	// TODO
+	$SectionSemester = htmlspecialchars($_POST['SectionSemester']);
+	$SectionYear = htmlspecialchars($_POST['SectionYear']);
+	$sqlSyntax = "INSERT INTO Section VALUES('" . $ClassTimeslotSeID . "','" . $SectionSemester . "','" . $SectionYear . "');";
+	$sqlResult = mysqli_query($mysqlConnection, $sqlSyntax);
 	
 	// Block table
-	// TODO
+	$BlockBName = htmlspecialchars($_POST['BlockBName']);
+	$BlockAddress = htmlspecialchars($_POST['BlockAddress']);
+	$BlockNumFloors = htmlspecialchars($_POST['BlockNumFloors']);
+	$BlockNumRooms = htmlspecialchars($_POST['BlockNumRooms']);
+	$sqlSyntax = "INSERT INTO Block VALUES('" . $BlockBName . "','" . $BlockAddress . "','" . $BlockNumFloors . "','" . $BlockNumRooms . "');";
+	$sqlResult = mysqli_query($mysqlConnection, $sqlSyntax);
 	
 	// Campus table
-	// TODO
+	$CampusCampID = htmlspecialchars($_POST['CampusCampID']);
+	$CampusName = htmlspecialchars($_POST['CampusName']);
+	$sqlSyntax = "INSERT INTO Campus VALUES('" . $CampusCampID . "','" . $CampusName . "');";
+	$sqlResult = mysqli_query($mysqlConnection, $sqlSyntax);
 	
 	// BlockCamp table
-	// TODO
+	$sqlSyntax = "INSERT INTO BlockCamp VALUES('" . $BlockBName . "','" . $CampusCampID . "');";
+	$sqlResult = mysqli_query($mysqlConnection, $sqlSyntax);
 	
 	// Department
-	// TODO
+	$DepartmentDName = htmlspecialchars($_POST['DepartmentDName']);
+	$DepartmentChairman = htmlspecialchars($_POST['DepartmentChairman']);
+	$sqlSyntax = "INSERT INTO Department VALUES('" . $DepartmentDName . "','" . $DepartmentChairman . "');";
+	$sqlResult = mysqli_query($mysqlConnection, $sqlSyntax);
 	
 	// DeptCamp table
-	// TODO
+	$sqlSyntax = "INSERT INTO DeptCamp VALUES('" . $CampusCampID . "','" . $DepartmentDName . "');";
+	$sqlResult = mysqli_query($mysqlConnection, $sqlSyntax);
 	
 	// Prereq-Follow table
-	// TODO
+	$PrereqFollowCID1 = htmlspecialchars($_POST['PrereqFollowCID1']);
+	$PrereqFollowCID2 = htmlspecialchars($_POST['PrereqFollowCID2']);
+	$sqlSyntax = "INSERT INTO `Prereq-Follow` VALUES('" . $CampusCampID . "','" . $DepartmentDName . "');";
+	$sqlResult = mysqli_query($mysqlConnection, $sqlSyntax);
 	
 	// Room table
-	// TODO
+	$RoomClassNum = htmlspecialchars($_POST['RoomClassNum']);
+	$RoomCapacity = htmlspecialchars($_POST['RoomCapacity']);
+	$sqlSyntax = "INSERT INTO Room VALUES('" . $ClassTimeslotRoID . "','" . $RoomClassNum . "','" . $RoomCapacity . "');";
+	$sqlResult = mysqli_query($mysqlConnection, $sqlSyntax);
 	
-	// BlockRoom talbe
-	// TODO
+	// BlockRoom table
+	if( $_POST['roomIsBlockRoom'] ) {
+		$sqlSyntax = "INSERT INTO BlockRoom VALUES('" . $ClassTimeslotRoID . "','" . $BlockBName . "');";
+		$sqlResult = mysqli_query($mysqlConnection, $sqlSyntax);
+	}
 	
 	// Classroom table
-	// TODO
+	if( $_POST['roomIsClassroom'] ) {
+		$sqlSyntax = "INSERT INTO Classroom VALUES('" . $ClassTimeslotRoID . "');";
+		$sqlResult = mysqli_query($mysqlConnection, $sqlSyntax);
+	}
 	
 	// ConferenceRoom table
-	// TODO
+	if( $_POST['roomIsConferenceRoom'] ) {
+		$sqlSyntax = "INSERT INTO ConferenceRoom VALUES('" . $ClassTimeslotRoID . "');";
+		$sqlResult = mysqli_query($mysqlConnection, $sqlSyntax);
+	}
 	
 	// LabRoom table
-	// TODO
+	if( $_POST['roomIsLabRoom'] ) {
+		$sqlSyntax = "INSERT INTO LabRoom VALUES('" . $ClassTimeslotRoID . "');";
+		$sqlResult = mysqli_query($mysqlConnection, $sqlSyntax);
+	}
 	
 	// Office table
-	// TODO
+	$OfficeRoID = htmlspecialchars($_POST['OfficeRoID']);
+	$sqlSyntax = "INSERT INTO Office VALUES('" . $OfficeRoID . "');";
+	$sqlResult = mysqli_query($mysqlConnection, $sqlSyntax);
 	
 	// Schedule table
-	// TODO
+	$sqlSyntax = "INSERT INTO Schedule VALUES('" . $ClassTimeslotStartTime . "','" . $ClassTimeslotDayWeek . "','" . $ClassTimeslotSeID . "','" /*. $ClassTimeslotEndTime*/ . "','" . $ClassTimeslotRoID . "');";
+	$sqlResult = mysqli_query($mysqlConnection, $sqlSyntax);
 	
 	// AssignTo table
-	// TODO
+	$sqlSyntax = "INSERT INTO AssignTo VALUES('" . $ContractsSeID . "','" . $ContractsTAID . "');";
+	$sqlResult = mysqli_query($mysqlConnection, $sqlSyntax);
 	
 	// Under table
-	// TODO
+	$UnderPName = htmlspecialchars($_POST['UnderPName']);
+	$sqlSyntax = "INSERT INTO Under VALUES('" . $DepartmentDName . "','" . $UnderPName . "');";
+	$sqlResult = mysqli_query($mysqlConnection, $sqlSyntax);
 	
 	// Work table
-	// TODO
+	$WorkIID = htmlspecialchars($_POST['WorkIID']);
+	$sqlSyntax = "INSERT INTO Work VALUES('" . $DepartmentDName . "','" . $WorkIID . "');";
+	$sqlResult = mysqli_query($mysqlConnection, $sqlSyntax);
 	
 	// Within table
-	// TODO
+	$sqlSyntax = "INSERT INTO Work VALUES('" . $CourseCID . "','" . $DepartmentDName . "');";
+	$sqlResult = mysqli_query($mysqlConnection, $sqlSyntax);
 ?>
 
 <?php include('footer.php'); ?>

@@ -196,6 +196,7 @@
 	// Store the instructor's data (that was obtained from the form on instructor_data_gathering.php) (into the MySQL database).
 	
 	// Store the data required for the MySQL table(s) related to the instructor.
+	
 	// Instructor table
 	$IID = htmlspecialchars($_POST['IID']);
 	$ISSN = htmlspecialchars($_POST['ISSN']);
