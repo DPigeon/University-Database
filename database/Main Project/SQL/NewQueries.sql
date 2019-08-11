@@ -126,24 +126,19 @@ GROUP BY P.Pname;
  */
 
 /* Not completed yet but almost done*/
-SELECT distinct C.Cname, S.SeID, CT.StartTime, CT.EndTime, B.Address, I.FirstName, R.Capacity
+SELECT distinct C.Cname,T.IID ,I.FirstName,I.LastName, S.SeID, S.Year, S.Semester, CT.DayWeek, CT.StartTime, CT.EndTime,CT.RoID, R.Capacity, B.Address
 FROM Instructor I
   INNER JOIN Teach T on I.IID = T.IID
-  INNER JOIN Section S
+  INNER JOIN Section S on T.SeID = S.SeID
   INNER JOIN Has H on S.SeID = H.SeID
   INNER JOIN Course C on H.CID = C.CID
   INNER JOIN Within W on C.CID = W.CID
   INNER JOIN Department D on D.Dname = W.Dname
   INNER JOIN DeptCamp DC on DC.Dname = D.Dname
-  INNER JOIN Campus Ca on Ca.CampID = DC.CampID
-  INNER JOIN BlockCamp BC on BC.CampID = Ca.CampID
-  INNER JOIN Block B on B.BName = BC.BName
-  INNER JOIN BlockRoom BR on BR.BName = B.BName
-  INNER JOIN Room R on R.RoID=BR.RoID
   INNER JOIN ClassTimeslot CT on S.SeID = CT.SeID
-  INNER JOIN Under U on D.DName = U.DName
-  INNER JOIN Program P on U.PName = P.PName
-  INNER JOIN Belong B2 on P.PName=B2.PName 
+  INNER JOIN Room R on R.RoID=CT.RoID
+INNER JOIN BlockRoom on R.RoID = BlockRoom.RoID
+InNER JOIN Block B on BlockRoom.BName = B.BName
 WHERE D.Dname = 'Physics' AND S.Semester = 'Winter';
 
 
