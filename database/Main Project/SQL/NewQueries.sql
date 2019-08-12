@@ -327,7 +327,7 @@ Where CID IN (Select P.CID1
 FROM Course C, PrereqFollow P
 Where CName='COMP400' AND C.CID=P.CID2);
 Find the FOLLOW of a course
-Select C.Cname
+Select C.CName
 From Course C
 Where CID IN (Select P.CID2
 FROM Course C, PrereqFollow P
