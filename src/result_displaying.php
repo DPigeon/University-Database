@@ -368,7 +368,7 @@
 					From Course C
 					Where CID IN (Select P.CID2
 					FROM Course C, PrereqFollow P
-					Where CName='CourseCName' AND C.CID=P.CID1);";
+					Where CName='$CourseCName' AND C.CID=P.CID1);";
 		$sqlResult3 = mysqli_query($mysqlConnection, $sqlSyntax3);
 		printSqlResult($sqlResult3);
 	}
