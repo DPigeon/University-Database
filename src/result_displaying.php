@@ -332,12 +332,11 @@
 			$sqlSyntax3 = "/* We drop a course from a specific student */
 			DELETE FROM EnrolledIn
 			  WHERE STID = '$var1' AND SeID = '$var2';";
-			$sqlResult3 = mysqli_query($mysqlConnection, $sqlSyntax3);
-			printSqlResult($sqlResult3);
+			$sqlResult3 = mysqli_query($mysqlConnection, $sqlSyntax3); // do not print this (because it's a deletion, not a return of a table)
 		}
 	}
 	if( isset($_POST['query_xxii']) ) { // THE CONTENTS OF THIS IF STATEMENT NEEDS "MINOR-LEVEL CONFIRMATION".
-		$sqlSyntax = "/* xxii)
+		$sqlSyntax1 = "/* xxii)
 					 * Give a detailed report for a specific student (This include personal data,
 					 * academic history, courses taken and grades received for each course,
 					 * GPA, etc.)
@@ -350,24 +349,28 @@
 					  INNER JOIN Has H ON Se.SeID = H.SeID
 					  INNER JOIN Course C ON C.CID = H.CID
 					WHERE S.STID = '$StudentSTID' AND SHA.STID = '$StudentSTID' AND SDH.STID = '$StudentSTID'
-					GROUP BY S.STID;
+					GROUP BY S.STID;";
+		$sqlResult1 = mysqli_query($mysqlConnection, $sqlSyntax1);
+		printSqlResult($sqlResult1);
 
-					/*Find the prereq of a course*/
+		$sqlSyntax2 = "/*Find the prereq of a course*/
 
 					Select C.CName
 					From Course C
 					Where CID IN (Select P.CID1
 					FROM Course C, PrereqFollow P
-					Where CName='$CourseCName' AND C.CID=P.CID2);
+					Where CName='$CourseCName' AND C.CID=P.CID2);";
+		$sqlResult2 = mysqli_query($mysqlConnection, $sqlSyntax2);
+		printSqlResult($sqlResult2);
 
-					/*Find the FOLLOW of a course*/
+		$sqlSyntax3 = "/*Find the FOLLOW of a course*/
 					Select C.CName
 					From Course C
 					Where CID IN (Select P.CID2
 					FROM Course C, PrereqFollow P
 					Where CName='CourseCName' AND C.CID=P.CID1);";
-		$sqlResult = mysqli_query($mysqlConnection, $sqlSyntax);
-		printSqlResult($sqlResult);
+		$sqlResult3 = mysqli_query($mysqlConnection, $sqlSyntax3);
+		printSqlResult($sqlResult3);
 	}
 	
 	/*// <testCase>
