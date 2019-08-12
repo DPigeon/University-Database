@@ -321,17 +321,17 @@ FROM StHomeAddress SHA, StDegHist SDH, Student S
 WHERE S.STID = 7 AND SHA.STID = 7 AND SDH.STID = 7
 GROUP BY S.STID;
 Find the prereq of a course
-Select C.Cname
+Select C.CName
 From Course C
 Where CID IN (Select P.CID1
 FROM Course C, PrereqFollow P
-Where Cname='COMP400' AND C.CID=P.CID2);
+Where CName='COMP400' AND C.CID=P.CID2);
 Find the FOLLOW of a course
 Select C.Cname
 From Course C
 Where CID IN (Select P.CID2
 FROM Course C, PrereqFollow P
-Where Cname='COMP352' AND C.CID=P.CID1);
+Where CName='COMP352' AND C.CID=P.CID1);
 
 
 
