@@ -26,3 +26,8 @@ SELECT C.CID
 FROM Course C
 GROUP BY C.CID
 HAVING COUNT(DISTINCT C.CName) > 1;
+
+/* Retrieve student schedule for a particular Year and Term */
+select  S2.STID, S2.FirstName, C.Cname, ClassTimeslot.StartTime, ClassTimeslot.DayWeek, ClassTimeslot.EndTime
+from ClassTimeslot inner join Section S on ClassTimeslot.SeID = S.SeID inner join Has H on S.SeID = H.SeID inner join Course C on H.CID = C.CID inner join EnrolledIn EI on S.SeID = EI.SeID inner join Student S2 on EI.STID = S2.STID
+where S2.STID=1 and S.Year=2020 and S.Semester='Winter';
