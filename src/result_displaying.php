@@ -52,7 +52,7 @@
 	$SectionYear = htmlspecialchars($_POST['SectionYear']);
 	
 	if( isset($_POST['query_i__create']) ) {
-		$sqlSyntax = "INSERT INTO Instructor VALUES('$InstructorIID', '$ISSN', '$InstructorPhone', '$InstructorFirstName', '$InstructorSupID', '$InstructorEmail', '$InstructorLastName');";
+		$sqlSyntax = "INSERT INTO Instructor VALUES('$InstructorIID', '$InstructorISSN', '$InstructorPhone', '$InstructorFirstName', '$InstructorSupID', '$InstructorEmail', '$InstructorLastName');";
 		$sqlResult = mysqli_query($mysqlConnection, $sqlSyntax);
 	}
 	if( isset($_POST['query_i__delete']) ) {
