@@ -50,6 +50,9 @@
 	$CourseCID = htmlspecialchars($_POST['CourseCID']);
 	
 	$SectionYear = htmlspecialchars($_POST['SectionYear']);
+
+	$Add1 = htmlspecialchars($_POST['Add1']);
+	$Add2 = htmlspecialchars($_POST['Add2']);
 	
 	if( isset($_POST['query_i__create']) ) {
 		$sqlSyntax = "INSERT INTO Instructor VALUES('$InstructorIID', '$InstructorISSN', '$InstructorPhone', '$InstructorFirstName', '$InstructorSupID', '$InstructorEmail', '$InstructorLastName');";
@@ -371,6 +374,40 @@
 					Where CName='$CourseCName' AND C.CID=P.CID1);";
 		$sqlResult3 = mysqli_query($mysqlConnection, $sqlSyntax3);
 		printSqlResult($sqlResult3);
+	}
+	if( isset($_POST['add_1']) ) { 
+		$sqlSyntax1 = "
+					SELECT C.Cname
+					FROM Course C
+					WHERE CID IN (Select P.CID1
+      					FROM Course C, PrereqFollow P
+      					WHERE Cname='$Add1' AND C.CID=P.CID2);
+";
+		$sqlResult1 = mysqli_query($mysqlConnection, $sqlSyntax1);
+		printSqlResult($sqlResult1);
+	}
+
+	if( isset($_POST['add_2']) ) { 
+		$sqlSyntax1 = "
+		SELECT C.Cname
+		FROM Course C
+		WHERE CID IN (Select P.CID2
+			         FROM Course C, PrereqFollow P
+			         WHERE Cname='$Add2' AND C.CID=P.CID1);	
+";
+		$sqlResult1 = mysqli_query($mysqlConnection, $sqlSyntax1);
+		printSqlResult($sqlResult1);
+	}
+
+	if( isset($_POST['add_3']) ) { 
+		$sqlSyntax1 = "
+		SELECT C.CID
+		FROM Course C
+		GROUP BY C.CID
+		HAVING COUNT(DISTINCT C.CName) > 1;		
+";
+		$sqlResult1 = mysqli_query($mysqlConnection, $sqlSyntax1);
+		printSqlResult($sqlResult1);
 	}
 	
 	/*// <testCase>

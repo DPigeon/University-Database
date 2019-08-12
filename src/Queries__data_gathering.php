@@ -156,6 +156,14 @@
                 <small id="lnameHelp" class="form-text text-muted">What is the year of the section (for queries xx and xxi)?</small>
               </div>
               <div class="form-group" style="width: 50%;">
+                <input type="text" class="form-control" name="Add1" aria-describedby="lnameHelp" placeholder="Select prereq">
+                <small id="lnameHelp" class="form-text text-muted">What is the prerequite class (Add 1)?</small>
+              </div>
+              <div class="form-group" style="width: 50%;">
+                <input type="text" class="form-control" name="Add2" aria-describedby="lnameHelp" placeholder="Select followReq">
+                <small id="lnameHelp" class="form-text text-muted">What is the follow up prerequite (Add 2)?</small>
+              </div>
+              <div class="form-group" style="width: 50%;">
 				  Select queries whose output you want to view (after having put in the necessary values above):
               </div>
               <div class="form-group" style="width: 50%;">
@@ -281,6 +289,18 @@
               <div class="form-group" style="width: 50%;">
                 <input type="checkbox" class="form-check-input" id="grad" name="query_xxii">
                 <label class="form-check-label" for="grad">Query xxii</label>
+              </div>
+              <div class="form-group" style="width: 50%;">
+                <input type="checkbox" class="form-check-input" id="grad" name="add_1">
+                <label class="form-check-label" for="grad">Additional Query 1 (PreReq)</label>
+              </div>
+              <div class="form-group" style="width: 50%;">
+                <input type="checkbox" class="form-check-input" id="grad" name="add_2">
+                <label class="form-check-label" for="grad">Additional Query 2 (PreReq-Follow)</label>
+              </div>
+              <div class="form-group" style="width: 50%;">
+                <input type="checkbox" class="form-check-input" id="grad" name="add_3">
+                <label class="form-check-label" for="grad">Additional Query 3 (FD)</label>
               </div>
                 <input type="submit" class="btn btn-success" value="Search" style="width: 30%;">
               </div>
