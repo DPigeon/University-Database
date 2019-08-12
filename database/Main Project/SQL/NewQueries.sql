@@ -97,7 +97,7 @@ WHERE B.BName = 'B Block';
  * number of credits required for completion in each program.
  */
 
-SELECT P.Pname, P.TotalCredits
+SELECT P.PName, P.TotalCredits
 FROM Program P
   INNER JOIN Under U on P.PName = U.PName
   INNER JOIN Department D on D.DName=U.DName
@@ -107,16 +107,16 @@ WHERE D.DName='Engineering';
  * Get a list of all courses offered in a given term by a specific program.
  */
 
-SELECT C.Cname, P.Pname
+SELECT C.CName, P.PName
 FROM Section S
   INNER JOIN Has H on S.SeID = H.SeID
   INNER JOIN Course C on C.CID = H.CID
   INNER JOIN Within W on W.CID = C.CID
-  INNER JOIN Department D on W.Dname = D.Dname
-  INNER JOIN Under U on U.Dname = D.Dname
-  INNER JOIN Program P on P.Pname = U.Pname
-WHERE S.Semester='Fall' AND P.Pname = 'Canadian History'
-GROUP BY P.Pname;
+  INNER JOIN Department D on W.DName = D.DName
+  INNER JOIN Under U on U.DName = D.DName
+  INNER JOIN Program P on P.PName = U.PName
+WHERE S.Semester='Fall' AND P.PName = 'Canadian History'
+GROUP BY P.PName;
 
 /* ix)
  * Get the details of all the courses offered by a specific department for a
@@ -125,31 +125,30 @@ GROUP BY P.Pname;
  * number of enrolled students.
  */
 
-/* Not completed yet but almost done*/
-SELECT distinct C.Cname,T.IID ,I.FirstName,I.LastName, S.SeID, S.Year, S.Semester, CT.DayWeek, CT.StartTime, CT.EndTime,CT.RoID, R.Capacity, B.Address
+SELECT distinct C.CName, T.IID , I.FirstName, I.LastName, S.SeID, S.Year, S.Semester, CT.DayWeek, CT.StartTime, CT.EndTime, CT.RoID, R.Capacity, B.Address
 FROM Instructor I
   INNER JOIN Teach T on I.IID = T.IID
   INNER JOIN Section S on T.SeID = S.SeID
   INNER JOIN Has H on S.SeID = H.SeID
   INNER JOIN Course C on H.CID = C.CID
   INNER JOIN Within W on C.CID = W.CID
-  INNER JOIN Department D on D.Dname = W.Dname
-  INNER JOIN DeptCamp DC on DC.Dname = D.Dname
+  INNER JOIN Department D on D.DName = W.DName
+  INNER JOIN DeptCamp DC on DC.DName = D.DName
   INNER JOIN ClassTimeslot CT on S.SeID = CT.SeID
   INNER JOIN Room R on R.RoID=CT.RoID
-INNER JOIN BlockRoom on R.RoID = BlockRoom.RoID
-InNER JOIN Block B on BlockRoom.BName = B.BName
-WHERE D.Dname = 'Physics' AND S.Semester = 'Winter';
+  INNER JOIN BlockRoom on R.RoID = BlockRoom.RoID
+  InNER JOIN Block B on BlockRoom.BName = B.BName
+WHERE D.DName = 'Physics' AND S.Semester = 'Winter';
 
 
 /* x)
- * SELECT C.Cname, S.SeID, B.Address, CLT.startTime,CLT.endtime
+ * SELECT C.CName, S.SeID, B.Address, CLT.startTime,CLT.endtime
  * FROM Course C, Section S, ClassTimeSlot CLT, Block B
  */
 
 SELECT S.STID, S.FirstName, S.LastName
 FROM Student S, Belong B, Section SEC, EnrolledIn E
-WHERE B.Pname='Arts' AND B.STID=S.STID AND Semester='Summer' AND E.SeID=SEC.SeID AND E.STID=S.STID;
+WHERE B.PName='Arts' AND B.STID=S.STID AND Semester='Summer' AND E.SeID=SEC.SeID AND E.STID=S.STID;
 
 /* xi)
  * Find the name of all the instructors who taught a given course on a
@@ -173,14 +172,14 @@ FROM Instructor I
   INNER JOIN Work W on I.IID = W.IID
   INNER JOIN Department D on D.DName = W.DName
   INNER JOIN Supervisor S on S.SupID=I.IID
-  Where D.DName='Computer Science'
-GROUP BY D.DName;
+Where D.DName='Computer Science'
+GROUP BY I.FirstName;
 
 /* xiii)
  * Give a list of all the advisors in a given department.
  */
 
-SELECT B.Advisor
+SELECT B.Advisor, D.DName
 FROM Belong B
   INNER JOIN Program P on P.PName = B.PName
   INNER JOIN Under U on U.PName = P.PName
@@ -247,7 +246,7 @@ GROUP BY W.DName;
 SELECT P.PName, Count(*)
 FROM Program P, Under U
 WHERE P.PName=U.PName
-GROUP BY U.Dname;
+GROUP BY U.DName;
 
 /*SELECT B.PName, COUNT(S.STID)
 FROM Student S, Belong B
@@ -275,7 +274,7 @@ SELECT Se.SeID
 FROM Course C
   INNER JOIN Has H ON C.CID = H.CID
   INNER JOIN Section Se ON Se.SeID = H.SeID
-WHERE C.CName = 'Bio202' AND Se.Semester = 'Winter' AND Se.Year = 2020;
+WHERE C.CName = 'COMP249' AND Se.Semester = 'Winter' AND Se.Year = 2020;
 
 /* Gets the student ID we need */
 SELECT St.STID
@@ -322,15 +321,17 @@ FROM StHomeAddress SHA, StDegHist SDH, Student S
 WHERE S.STID = 7 AND SHA.STID = 7 AND SDH.STID = 7
 GROUP BY S.STID;
 Find the prereq of a course
-Select C.Cname 
+Select C.CName
 From Course C
-Where CID IN (Select P.CID1 FROM Course C, PrereqFollow P Where Cname='COMP400' AND C.CID=P.CID2);
+Where CID IN (Select P.CID1
+FROM Course C, PrereqFollow P
+Where CName='COMP400' AND C.CID=P.CID2);
 Find the FOLLOW of a course
-Select C.Cname 
+Select C.CName
 From Course C
-Where CID IN (Select P.CID2 FROM Course C, PrereqFollow P Where Cname='COMP352' AND C.CID=P.CID1);
-
-
+Where CID IN (Select P.CID2
+FROM Course C, PrereqFollow P
+Where CName='COMP352' AND C.CID=P.CID1);
 
 
 

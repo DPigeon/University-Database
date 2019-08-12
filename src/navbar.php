@@ -12,7 +12,7 @@
             'Students' => '/student_data_gathering.php',
             'Courses' => '/course_data_gathering.php',
             'Instructors' => '/instructor_data_gathering.php',
-            'Search' => 'search.php' //'result_displaying.php'
+            'Queries' => 'Queries__data_gathering.php' // 'search.php' //'result_displaying.php'
         );
 
         foreach ($urls as $name => $url) {
