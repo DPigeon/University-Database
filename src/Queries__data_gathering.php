@@ -280,7 +280,7 @@
               </div>
               <div class="form-group" style="width: 50%;">
                 <input type="checkbox" class="form-check-input" id="grad" name="query_xxii">
-                <label class="form-check-label" for="grad">Query xvxi</label>
+                <label class="form-check-label" for="grad">Query xxii</label>
               </div>
                 <input type="submit" class="btn btn-success" value="Search" style="width: 30%;">
               </div>
